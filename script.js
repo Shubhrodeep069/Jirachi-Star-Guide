@@ -967,3 +967,4 @@ function updateThemeIcon(theme) {
     }
 }
 
+
