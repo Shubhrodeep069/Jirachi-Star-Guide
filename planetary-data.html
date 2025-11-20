@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planetary Data - Cosmic Insight</title>
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #8b5cf6;
+            --dark: #1e1b4b;
+            --darker: #0f172a;
+            --light: #c4b5fd;
+            --text: #e2e8f0;
+            --gold: #fbbf24;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--darker);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .planet-data {
+            display: none;
+        }
+
+        .house-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .house-info.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sun Data -->
+    <div id="sun-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Sun in 1st House</h3>
+            <p><strong>Personality:</strong> Strong sense of identity, natural leadership qualities, charismatic presence</p>
+            <p><strong>Strengths:</strong> Confidence, vitality, self-expression</p>
+            <p><strong>Challenges:</strong> Can be self-centered, needs to learn humility</p>
+            <p><strong>Life Lesson:</strong> To lead without dominating, to shine without blinding others</p>
+        </div>
+        <div class="house-info" data-house="2">
+            <h3>Sun in 2nd House</h3>
+            <p><strong>Personality:</strong> Values self-worth through material possessions, strong financial drive</p>
+            <p><strong>Strengths:</strong> Good with money management, practical values</p>
+            <p><strong>Challenges:</strong> May over-identify with possessions, material attachment</p>
+            <p><strong>Life Lesson:</strong> To find self-worth beyond material possessions</p>
+        </div>
+        <div class="house-info" data-house="3">
+            <h3>Sun in 3rd House</h3>
+            <p><strong>Personality:</strong> Expressive communicator, curious mind, strong sibling connections</p>
+            <p><strong>Strengths:</strong> Excellent communication skills, quick learning ability</p>
+            <p><strong>Challenges:</strong> Can be scattered, may talk too much</p>
+            <p><strong>Life Lesson:</strong> To focus mental energy and communicate with purpose</p>
+        </div>
+        <div class="house-info" data-house="4">
+            <h3>Sun in 4th House</h3>
+            <p><strong>Personality:</strong> Deep connection to family roots, strong need for emotional security</p>
+            <p><strong>Strengths:</strong> Nurturing nature, strong family bonds</p>
+            <p><strong>Challenges:</strong> May be overly attached to home, resistance to change</p>
+            <p><strong>Life Lesson:</strong> To create security while embracing necessary changes</p>
+        </div>
+        <div class="house-info" data-house="5">
+            <h3>Sun in 5th House</h3>
+            <p><strong>Personality:</strong> Creative self-expression, romantic nature, love for entertainment</p>
+            <p><strong>Strengths:</strong> Artistic talents, joy in self-expression</p>
+            <p><strong>Challenges:</strong> Can be dramatic, may seek constant attention</p>
+            <p><strong>Life Lesson:</strong> To create for joy rather than for approval</p>
+        </div>
+        <div class="house-info" data-house="6">
+            <h3>Sun in 6th House</h3>
+            <p><strong>Personality:</strong> Service-oriented, health-conscious, analytical worker</p>
+            <p><strong>Strengths:</strong> Good at organizing, reliable employee</p>
+            <p><strong>Challenges:</strong> Can be critical, perfectionist tendencies</p>
+            <p><strong>Life Lesson:</strong> To serve without losing sense of self</p>
+        </div>
+        <div class="house-info" data-house="7">
+            <h3>Sun in 7th House</h3>
+            <p><strong>Personality:</strong> Partnership-focused, diplomatic, seeks balance in relationships</p>
+            <p><strong>Strengths:</strong> Excellent partnership skills, fair and just</p>
+            <p><strong>Challenges:</strong> May lose identity in relationships, co-dependency</p>
+            <p><strong>Life Lesson:</strong> To maintain individuality within partnerships</p>
+        </div>
+        <div class="house-info" data-house="8">
+            <h3>Sun in 8th House</h3>
+            <p><strong>Personality:</strong> Deep, transformative nature, interest in mysteries and psychology</p>
+            <p><strong>Strengths:</strong> Psychological insight, ability to handle crises</p>
+            <p><strong>Challenges:</strong> Intensity can be overwhelming, power struggles</p>
+            <p><strong>Life Lesson:</strong> To transform without destroying, to empower without controlling</p>
+        </div>
+        <div class="house-info" data-house="9">
+            <h3>Sun in 9th House</h3>
+            <p><strong>Personality:</strong> Philosophical, love for travel and higher learning, spiritual seeker</p>
+            <p><strong>Strengths:</strong> Wisdom, broad perspective, teaching abilities</p>
+            <p><strong>Challenges:</strong> Can be dogmatic, may overlook details</p>
+            <p><strong>Life Lesson:</strong> To seek truth while respecting others' paths</p>
+        </div>
+        <div class="house-info" data-house="10">
+            <h3>Sun in 10th House</h3>
+            <p><strong>Personality:</strong> Ambitious, career-focused, seeks public recognition</p>
+            <p><strong>Strengths:</strong> Leadership in career, public success</p>
+            <p><strong>Challenges:</strong> Workaholic tendencies, may neglect personal life</p>
+            <p><strong>Life Lesson:</strong> To achieve success without sacrificing personal values</p>
+        </div>
+        <div class="house-info" data-house="11">
+            <h3>Sun in 11th House</h3>
+            <p><strong>Personality:</strong> Socially conscious, innovative, values friendships and community</p>
+            <p><strong>Strengths:</strong> Networking skills, humanitarian vision</p>
+            <p><strong>Challenges:</strong> Can be overly idealistic, detached from reality</p>
+            <p><strong>Life Lesson:</strong> To balance ideals with practical action</p>
+        </div>
+        <div class="house-info" data-house="12">
+            <h3>Sun in 12th House</h3>
+            <p><strong>Personality:</strong> Spiritual, intuitive, private, connection to subconscious</p>
+            <p><strong>Strengths:</strong> Psychic abilities, compassion, spiritual wisdom</p>
+            <p><strong>Challenges:</strong> Tendency to escape reality, hidden enemies</p>
+            <p><strong>Life Lesson:</strong> To find light in darkness, to serve silently</p>
+        </div>
+    </div>
+
+    <!-- Moon Data -->
+    <div id="moon-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Moon in 1st House</h3>
+            <p><strong>Emotional Nature:</strong> Emotions visible to all, nurturing personality</p>
+            <p><strong>Strengths:</strong> Emotional intelligence, caring nature</p>
+            <p><strong>Challenges:</strong> Mood swings, over-sensitivity</p>
+        </div>
+        <div class="house-info" data-house="2">
+            <h3>Moon in 2nd House</h3>
+            <p><strong>Emotional Nature:</strong> Emotional security through possessions</p>
+            <p><strong>Strengths:</strong> Financial intuition, value creation</p>
+            <p><strong>Challenges:</strong> Emotional spending, attachment to things</p>
+        </div>
+        <div class="house-info" data-house="3">
+            <h3>Moon in 3rd House</h3>
+            <p><strong>Emotional Nature:</strong> Emotional communication, curious mind</p>
+            <p><strong>Strengths:</strong> Expressive writing, emotional intelligence in communication</p>
+            <p><strong>Challenges:</strong> Nervous energy, emotional gossip</p>
+        </div>
+        <div class="house-info" data-house="4">
+            <h3>Moon in 4th House</h3>
+            <p><strong>Emotional Nature:</strong> Deep connection to home and family</p>
+            <p><strong>Strengths:</strong> Strong nurturing abilities, domestic skills</p>
+            <p><strong>Challenges:</strong> Over-attachment to family, resistance to change</p>
+        </div>
+        <div class="house-info" data-house="5">
+            <h3>Moon in 5th House</h3>
+            <p><strong>Emotional Nature:</strong> Emotional creativity, romantic nature</p>
+            <p><strong>Strengths:</strong> Creative expression, playful emotions</p>
+            <p><strong>Challenges:</strong> Dramatic love affairs, emotional gambling</p>
+        </div>
+        <div class="house-info" data-house="6">
+            <h3>Moon in 6th House</h3>
+            <p><strong>Emotional Nature:</strong> Emotional about work and health</p>
+            <p><strong>Strengths:</strong> Caring service, health intuition</p>
+            <p><strong>Challenges:</strong> Worry about health, emotional stress at work</p>
+        </div>
+        <div class="house-info" data-house="7">
+            <h3>Moon in 7th House</h3>
+            <p><strong>Emotional Nature:</strong> Emotional partnerships, need for emotional harmony</p>
+            <p><strong>Strengths:</strong> Diplomatic emotions, partnership intuition</p>
+            <p><strong>Challenges:</strong> Emotional dependency, moody relationships</p>
+        </div>
+        <div class="house-info" data-house="8">
+            <h3>Moon in 8th House</h3>
+            <p><strong>Emotional Nature:</strong> Deep emotional transformations</p>
+            <p><strong>Strengths:</strong> Psychological insight, emotional resilience</p>
+            <p><strong>Challenges:</strong> Intense emotions, power struggles</p>
+        </div>
+        <div class="house-info" data-house="9">
+            <h3>Moon in 9th House</h3>
+            <p><strong>Emotional Nature:</strong> Emotional connection to beliefs</p>
+            <p><strong>Strengths:</strong> Philosophical emotions, spiritual intuition</p>
+            <p><strong>Challenges:</strong> Dogmatic emotions, emotional preaching</p>
+        </div>
+        <div class="house-info" data-house="10">
+            <h3>Moon in 10th House</h3>
+            <p><strong>Emotional Nature:</strong> Public emotions, emotional career</p>
+            <p><strong>Strengths:</strong> Public nurturing, emotional leadership</p>
+            <p><strong>Challenges:</strong> Emotional reputation issues, moody public image</p>
+        </div>
+        <div class="house-info" data-house="11">
+            <h3>Moon in 11th House</h3>
+            <p><strong>Emotional Nature:</strong> Emotional friendships, community feelings</p>
+            <p><strong>Strengths:</strong> Nurturing friendships, emotional networking</p>
+            <p><strong>Challenges:</strong> Emotional detachment, fluctuating friendships</p>
+        </div>
+        <div class="house-info" data-house="12">
+            <h3>Moon in 12th House</h3>
+            <p><strong>Emotional Nature:</strong> Hidden emotions, spiritual feelings</p>
+            <p><strong>Strengths:</strong> Psychic abilities, compassionate service</p>
+            <p><strong>Challenges:</strong> Emotional isolation, subconscious fears</p>
+        </div>
+    </div>
+
+    <!-- Mercury Data -->
+    <div id="mercury-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Mercury in 1st House</h3>
+            <p><strong>Communication Style:</strong> Quick-thinking, expressive, curious</p>
+            <p><strong>Strengths:</strong> Fast learning, excellent communication</p>
+            <p><strong>Challenges:</strong> Restlessness, nervous energy</p>
+        </div>
+        <div class="house-info" data-house="2">
+            <h3>Mercury in 2nd House</h3>
+            <p><strong>Communication Style:</strong> Practical thinking, value-oriented communication</p>
+            <p><strong>Strengths:</strong> Financial communication, practical ideas</p>
+            <p><strong>Challenges:</strong> Over-analysis of values</p>
+        </div>
+        <!-- Additional Mercury houses would continue similarly -->
+    </div>
+
+    <!-- Venus Data -->
+    <div id="venus-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Venus in 1st House</h3>
+            <p><strong>Love Nature:</strong> Charming, attractive, diplomatic</p>
+            <p><strong>Strengths:</strong> Natural charm, artistic expression</p>
+            <p><strong>Challenges:</strong> Vanity, over-indulgence</p>
+        </div>
+        <!-- Additional Venus houses would continue similarly -->
+    </div>
+
+    <!-- Mars Data -->
+    <div id="mars-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Mars in 1st House</h3>
+            <p><strong>Energy Style:</strong> Assertive, pioneering, energetic</p>
+            <p><strong>Strengths:</strong> Leadership, courage, initiative</p>
+            <p><strong>Challenges:</strong> Impulsiveness, aggression</p>
+        </div>
+        <!-- Additional Mars houses would continue similarly -->
+    </div>
+
+    <!-- Jupiter Data -->
+    <div id="jupiter-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Jupiter in 1st House</h3>
+            <p><strong>Expansion Area:</strong> Personality growth, optimism</p>
+            <p><strong>Strengths:</strong> Natural luck, philosophical nature</p>
+            <p><strong>Challenges:</strong> Over-confidence, exaggeration</p>
+        </div>
+        <!-- Additional Jupiter houses would continue similarly -->
+    </div>
+
+    <!-- Saturn Data -->
+    <div id="saturn-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Saturn in 1st House</h3>
+            <p><strong>Lesson Area:</strong> Self-discipline, responsibility</p>
+            <p><strong>Strengths:</strong> Discipline, maturity, reliability</p>
+            <p><strong>Challenges:</strong> Self-doubt, restriction</p>
+        </div>
+        <!-- Additional Saturn houses would continue similarly -->
+    </div>
+
+    <!-- Uranus Data -->
+    <div id="uranus-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Uranus in 1st House</h3>
+            <p><strong>Innovation Area:</strong> Unique self-expression</p>
+            <p><strong>Strengths:</strong> Originality, independence</p>
+            <p><strong>Challenges:</strong> Rebellion, unpredictability</p>
+        </div>
+        <!-- Additional Uranus houses would continue similarly -->
+    </div>
+
+    <!-- Neptune Data -->
+    <div id="neptune-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Neptune in 1st House</h3>
+            <p><strong>Spiritual Area:</strong> Dreamy personality</p>
+            <p><strong>Strengths:</strong> Imagination, compassion</p>
+            <p><strong>Challenges:</strong> Confusion, deception</p>
+        </div>
+        <!-- Additional Neptune houses would continue similarly -->
+    </div>
+
+    <!-- Pluto Data -->
+    <div id="pluto-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Pluto in 1st House</h3>
+            <p><strong>Transformation Area:</strong> Intense personality</p>
+            <p><strong>Strengths:</strong> Power, regeneration</p>
+            <p><strong>Challenges:</strong> Control issues, intensity</p>
+        </div>
+        <!-- Additional Pluto houses would continue similarly -->
+    </div>
+
+    <!-- Rahu Data -->
+    <div id="rahu-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Rahu in 1st House</h3>
+            <p><strong>Desire Area:</strong> Ambitious personality</p>
+            <p><strong>Strengths:</strong> Ambition, modern thinking</p>
+            <p><strong>Challenges:</strong> Restlessness, dissatisfaction</p>
+        </div>
+        <!-- Additional Rahu houses would continue similarly -->
+    </div>
+
+    <!-- Ketu Data -->
+    <div id="ketu-data" class="planet-data">
+        <div class="house-info" data-house="1">
+            <h3>Ketu in 1st House</h3>
+            <p><strong>Detachment Area:</strong> Spiritual personality</p>
+            <p><strong>Strengths:</strong> Intuition, spiritual insight</p>
+            <p><strong>Challenges:</strong> Isolation, confusion</p>
+        </div>
+        <!-- Additional Ketu houses would continue similarly -->
+    </div>
+
+    <script>
+        // Function to get planet data
+        function getPlanetData(planetName) {
+            const planetData = document.getElementById(planetName + '-data');
+            return planetData ? planetData.innerHTML : '';
+        }
+
+        // Function to get house information for a planet
+        function getHouseInfo(planetName, houseNumber) {
+            const houseElement = document.querySelector(`#${planetName}-data .house-info[data-house="${houseNumber}"]`);
+            return houseElement ? houseElement.innerHTML : '';
+        }
+    </script>
+</body>
+</html>
