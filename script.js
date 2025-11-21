@@ -117,6 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
+
+        
         // Calculate birth data including numerology
         async function calculateBirthData(name, date, time, place) {
             await new Promise(resolve => setTimeout(resolve, 2000));
@@ -379,14 +381,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         
 
-
-
-
-
-
-
-        // script.js - Complete version with zodiac data
-
 // Zodiac signs data with complete characteristics
 const zodiacData = {
     'aries': {
@@ -541,8 +535,431 @@ const zodiacData = {
                 <p><strong>Money Style:</strong> Spontaneous spenders, good at making money through communication</p>
             `
         }
+    },
+
+    'cancer': {
+    name: 'Cancer',
+    symbol: '♋',
+    dates: 'Jun 21 - Jul 22',
+    characteristics: {
+        personality: `
+            <h3>Core Personality</h3>
+            <p><strong>Element:</strong> Water</p>
+            <p><strong>Quality:</strong> Cardinal</p>
+            <p><strong>Ruling Planet:</strong> Moon</p>
+            <p><strong>Symbol:</strong> The Crab</p>
+            <p>Cancers are deeply intuitive, emotional, and nurturing. They are highly protective of their loved ones and value security and home above all else.</p>
+        `,
+        strengths: `
+            <h3>Strengths</h3>
+            <ul>
+                <li>Tenacious and highly imaginative</li>
+                <li>Loyal and empathetic</li>
+                <li>Protective and caring</li>
+                <li>Persuasive and intuitive</li>
+                <li>Compassionate and nurturing</li>
+            </ul>
+        `,
+        weaknesses: `
+            <h3>Weaknesses</h3>
+            <ul>
+                <li>Moody and pessimistic</li>
+                <li>Suspicious and manipulative</li>
+                <li>Insecure and clingy</li>
+                <li>Overly sensitive and self-pitying</li>
+            </ul>
+        `,
+        love: `
+            <h3>Love & Relationships</h3>
+            <p>Cancer seeks emotional security and a deep, soulful connection. They are devoted partners who build a cozy, safe home for their loved ones.</p>
+            <p><strong>Best Matches:</strong> Scorpio, Pisces, Taurus</p>
+            <p><strong>Challenges:</strong> Can be moody and need constant emotional reassurance</p>
+            <p><strong>Love Style:</strong> Nurturing, protective, and deeply emotional</p>
+        `,
+        career: `
+            <h3>Career & Money</h3>
+            <p>Excel in careers that allow them to care for others or use their intuition. They thrive in environments that feel like a family.</p>
+            <p><strong>Ideal Careers:</strong> Nursing, teaching, culinary arts, real estate, psychology</p>
+            <p><strong>Money Style:</strong> Savers and planners, money is linked to emotional security</p>
+        `
     }
-    // Add more zodiac signs here following the same pattern...
+},
+'leo': {
+    name: 'Leo',
+    symbol: '♌',
+    dates: 'Jul 23 - Aug 22',
+    characteristics: {
+        personality: `
+            <h3>Core Personality</h3>
+            <p><strong>Element:</strong> Fire</p>
+            <p><strong>Quality:</strong> Fixed</p>
+            <p><strong>Ruling Planet:</strong> Sun</p>
+            <p><strong>Symbol:</strong> The Lion</p>
+            <p>Leos are dramatic, creative, self-confident, and dominant. They are natural-born leaders who love to be in the spotlight and have a generous, warm heart.</p>
+        `,
+        strengths: `
+            <h3>Strengths</h3>
+            <ul>
+                <li>Creative and passionate</li>
+                <li>Generous and warm-hearted</li>
+                <li>Cheerful and humorous</li>
+                <li>Natural leaders</li>
+                <li>Loyal and protective</li>
+            </ul>
+        `,
+        weaknesses: `
+            <h3>Weaknesses</h3>
+            <ul>
+                <li>Arrogant and stubborn</li>
+                <li>Self-centered and lazy</li>
+                <li>Inflexible and dogmatic</li>
+                <li>Seeking constant validation</li>
+            </ul>
+        `,
+        love: `
+            <h3>Love & Relationships</h3>
+            <p>Leo is a passionate, loyal, and generous partner. They love grand romantic gestures and need a partner who isn't afraid to shower them with admiration.</p>
+            <p><strong>Best Matches:</strong> Aries, Sagittarius, Libra</p>
+            <p><strong>Challenges:</strong> Can be proud and require constant attention and praise</p>
+            <p><strong>Love Style:</strong> Dramatic, generous, and fiercely loyal</p>
+        `,
+        career: `
+            <h3>Career & Money</h3>
+            <p>Thrive in leadership roles and creative fields where they can receive recognition and applause.</p>
+            <p><strong>Ideal Careers:</strong> Management, acting, performing arts, politics, event planning</p>
+            <p><strong>Money Style:</strong> Generous spenders, enjoy luxury and buying gifts for others</p>
+        `
+    }
+},
+'virgo': {
+    name: 'Virgo',
+    symbol: '♍',
+    dates: 'Aug 23 - Sep 22',
+    characteristics: {
+        personality: `
+            <h3>Core Personality</h3>
+            <p><strong>Element:</strong> Earth</p>
+            <p><strong>Quality:</strong> Mutable</p>
+            <p><strong>Ruling Planet:</strong> Mercury</p>
+            <p><strong>Symbol:</strong> The Virgin</p>
+            <p>Virgos are analytical, kind, hardworking, and practical. They have a keen eye for detail and a deep desire for order and perfection in all areas of life.</p>
+        `,
+        strengths: `
+            <h3>Strengths</h3>
+            <ul>
+                <li>Loyal and analytical</li>
+                <li>Kind and hardworking</li>
+                <li>Practical and diligent</li>
+                <li>Meticulous and reliable</li>
+                <li>Resourceful and organized</li>
+            </ul>
+        `,
+        weaknesses: `
+            <h3>Weaknesses</h3>
+            <ul>
+                <li>Overly critical and judgmental</li>
+                <li>Shyness and worry</li>
+                <li>Overthink and stress easily</li>
+                <li>Perfectionist tendencies</li>
+            </ul>
+        `,
+        love: `
+            <h3>Love & Relationships</h3>
+            <p>Virgo shows love through practical acts of service. They seek a stable, intelligent partner and value loyalty and thoughtful communication.</p>
+            <p><strong>Best Matches:</strong> Taurus, Capricorn, Cancer</p>
+            <p><strong>Challenges:</strong> Can be overly critical and have impossibly high standards</p>
+            <p><strong>Love Style:</strong> Practical, devoted, and service-oriented</p>
+        `,
+        career: `
+            <h3>Career & Money</h3>
+            <p>Excel in any career that requires analysis, precision, and organization. They are the masters of efficiency.</p>
+            <p><strong>Ideal Careers:</strong> Editing, accounting, research, healthcare, data analysis</p>
+            <p><strong>Money Style:</strong> Frugal and practical savers, excellent at budgeting</p>
+        `
+    }
+},
+'libra': {
+    name: 'Libra',
+    symbol: '♎',
+    dates: 'Sep 23 - Oct 22',
+    characteristics: {
+        personality: `
+            <h3>Core Personality</h3>
+            <p><strong>Element:</strong> Air</p>
+            <p><strong>Quality:</strong> Cardinal</p>
+            <p><strong>Ruling Planet:</strong> Venus</p>
+            <p><strong>Symbol:</strong> The Scales</p>
+            <p>Libras are diplomatic, social, and obsessed with harmony, balance, and partnership. They have a refined taste and a strong sense of justice and fairness.</p>
+        `,
+        strengths: `
+            <h3>Strengths</h3>
+            <ul>
+                <li>Cooperative and diplomatic</li>
+                <li>Gracious and fair-minded</li>
+                <li>Social and idealistic</li>
+                <li>Charming and easy-going</li>
+                <li>Aesthetic and creative</li>
+            </ul>
+        `,
+        weaknesses: `
+            <h3>Weaknesses</h3>
+            <ul>
+                <li>Indecisive and avoids confrontations</li>
+                <li>Holds grudges and can be self-pitying</li>
+                <li>Can be easily influenced</li>
+                <li>May prioritize harmony over honesty</li>
+            </ul>
+        `,
+        love: `
+            <h3>Love & Relationships</h3>
+            <p>Libra is the sign of partnership and seeks a harmonious, balanced relationship. They are romantic, charming, and need a true intellectual and social equal.</p>
+            <p><strong>Best Matches:</strong> Gemini, Aquarius, Leo</p>
+            <p><strong>Challenges:</strong> Can be indecisive and may struggle with being alone</p>
+            <p><strong>Love Style:</strong> Romantic, fair, and partnership-focused</p>
+        `,
+        career: `
+            <h3>Career & Money</h3>
+            <p>Thrive in careers that involve mediation, aesthetics, and social interaction. They are natural peacemakers and artists.</p>
+            <p><strong>Ideal Careers:</strong> Law, diplomacy, design, arts, counseling</p>
+            <p><strong>Money Style:</strong> Spends on beautiful things and experiences, can be indecisive with big purchases</p>
+        `
+    }
+},
+'scorpio': {
+    name: 'Scorpio',
+    symbol: '♏',
+    dates: 'Oct 23 - Nov 21',
+    characteristics: {
+        personality: `
+            <h3>Core Personality</h3>
+            <p><strong>Element:</strong> Water</p>
+            <p><strong>Quality:</strong> Fixed</p>
+            <p><strong>Ruling Planet:</strong> Pluto (traditionally Mars)</p>
+            <p><strong>Symbol:</strong> The Scorpion</p>
+            <p>Scorpios are passionate, assertive, and determined. They are resourceful, powerful, and brave, with a deep emotional intensity and a magnetic, mysterious aura.</p>
+        `,
+        strengths: `
+            <h3>Strengths</h3>
+            <ul>
+                <li>Resourceful and brave</li>
+                <li>Passionate and stubborn</li>
+                <li>A true friend and detective</li>
+                <li>Focused and intuitive</li>
+                <li>Loyal and emotional</li>
+            </ul>
+        `,
+        weaknesses: `
+            <h3>Weaknesses</h3>
+            <ul>
+                <li>Distrusting and jealous</li>
+                <li>Secretive and manipulative</li>
+                <li>Resentful and compulsive</li>
+                <li>Can be overly intense</li>
+            </ul>
+        `,
+        love: `
+            <h3>Love & Relationships</h3>
+            <p>Scorpio seeks a deep, transformative, and all-consuming connection. They are extremely loyal and passionate but require absolute honesty and trust.</p>
+            <p><strong>Best Matches:</strong> Cancer, Pisces, Virgo</p>
+            <p><strong>Challenges:</strong> Can be jealous, secretive, and possessive</p>
+            <p><strong>Love Style:</strong> Intense, passionate, and deeply committed</p>
+        `,
+        career: `
+            <h3>Career & Money</h3>
+            <p>Excel in careers that require investigation, depth, and transformation. They are drawn to power and uncovering the truth.</p>
+            <p><strong>Ideal Careers:</strong> Research, surgery, psychology, detective work, finance</p>
+            <p><strong>Money Style:</strong> Strategic and private, often good at investing and managing joint finances</p>
+        `
+    }
+},
+'sagittarius': {
+    name: 'Sagittarius',
+    symbol: '♐',
+    dates: 'Nov 22 - Dec 21',
+    characteristics: {
+        personality: `
+            <h3>Core Personality</h3>
+            <p><strong>Element:</strong> Fire</p>
+            <p><strong>Quality:</strong> Mutable</p>
+            <p><strong>Ruling Planet:</strong> Jupiter</p>
+            <p><strong>Symbol:</strong> The Archer/Centaur</p>
+            <p>Sagittarians are generous, idealistic, and have a great sense of humor. They are born adventurers, constantly seeking knowledge, freedom, and new experiences.</p>
+        `,
+        strengths: `
+            <h3>Strengths</h3>
+            <ul>
+                <li>Generous and idealistic</li>
+                <li>Great sense of humor</li>
+                <li>Optimistic and open-minded</li>
+                <li>Intellectual and philosophical</li>
+                <li>Enthusiastic and free-spirited</li>
+            </ul>
+        `,
+        weaknesses: `
+            <h3>Weaknesses</h3>
+            <ul>
+                <li>Impatient and promises more than can deliver</li>
+                <li>Can be tactless and blunt</li>
+                <li>Restless and inconsistent</li>
+                <li>Afraid of commitment</li>
+            </ul>
+        `,
+        love: `
+            <h3>Love & Relationships</h3>
+            <p>Sagittarius needs a partner who is also a best friend and adventure buddy. They value honesty, freedom, and intellectual connection above all.</p>
+            <p><strong>Best Matches:</strong> Aries, Leo, Aquarius</p>
+            <p><strong>Challenges:</strong> Can be commitment-phobic and brutally honest</p>
+            <p><strong>Love Style:</strong> Adventurous, optimistic, and freedom-loving</p>
+        `,
+        career: `
+            <h3>Career & Money</h3>
+            <p>Thrive in careers that involve travel, philosophy, teaching, or anything that feels like an adventure rather than a job.</p>
+            <p><strong>Ideal Careers:</strong> Travel industry, higher education, philosophy, publishing, athletics</p>
+            <p><strong>Money Style:</strong> Spontaneous spenders on experiences and travel, optimistic about finances</p>
+        `
+    }
+},
+'capricorn': {
+    name: 'Capricorn',
+    symbol: '♑',
+    dates: 'Dec 22 - Jan 19',
+    characteristics: {
+        personality: `
+            <h3>Core Personality</h3>
+            <p><strong>Element:</strong> Earth</p>
+            <p><strong>Quality:</strong> Cardinal</p>
+            <p><strong>Ruling Planet:</strong> Saturn</p>
+            <p><strong>Symbol:</strong> The Sea-Goat</p>
+            <p>Capricorns are disciplined, responsible, and masters of self-control. They are highly ambitious, patient, and have a great sense of humor hidden beneath a serious exterior.</p>
+        `,
+        strengths: `
+            <h3>Strengths</h3>
+            <ul>
+                <li>Responsible and disciplined</li>
+                <li>Excellent self-control</li>
+                <li>Ambitious and patient</li>
+                <li>Humorous and meticulous</li>
+                <li>Reliable and determined</li>
+            </ul>
+        `,
+        weaknesses: `
+            <h3>Weaknesses</h3>
+            <ul>
+                <li>Know-it-all and unforgiving</li>
+                <li>Condescending and expecting the worst</li>
+                <li>Can be overly pessimistic</li>
+                <li>Workaholic tendencies</li>
+            </ul>
+        `,
+        love: `
+            <h3>Love & Relationships</h3>
+            <p>Capricorn is a loyal, stable, and patient partner. They take commitment seriously and seek a partner who is equally ambitious and reliable.</p>
+            <p><strong>Best Matches:</strong> Taurus, Virgo, Pisces</p>
+            <p><strong>Challenges:</strong> Can be overly serious and put work before relationships</p>
+            <p><strong>Love Style:</strong> Stable, loyal, and building a future together</p>
+        `,
+        career: `
+            <h3>Career & Money</h3>
+            <p>Excel in structured environments and are natural leaders in business and management. They are driven by long-term goals and success.</p>
+            <p><strong>Ideal Careers:</strong> CEO, management, finance, engineering, administration</p>
+            <p><strong>Money Style:</strong> Cautious savers and investors, focused on long-term security</p>
+        `
+    }
+},
+'aquarius': {
+    name: 'Aquarius',
+    symbol: '♒',
+    dates: 'Jan 20 - Feb 18',
+    characteristics: {
+        personality: `
+            <h3>Core Personality</h3>
+            <p><strong>Element:</strong> Air</p>
+            <p><strong>Quality:</strong> Fixed</p>
+            <p><strong>Ruling Planet:</strong> Uranus (traditionally Saturn)</p>
+            <p><strong>Symbol:</strong> The Water Bearer</p>
+            <p>Aquarians are progressive, original, independent, and humanitarian. They are deep thinkers who are fiercely loyal to their causes and their chosen "tribe."</p>
+        `,
+        strengths: `
+            <h3>Strengths</h3>
+            <ul>
+                <li>Progressive and original</li>
+                <li>Humanitarian and independent</li>
+                <li>Inventive and intellectual</li>
+                <li>Friendly and loyal</li>
+                <li>Open-minded and visionary</li>
+            </ul>
+        `,
+        weaknesses: `
+            <h3>Weaknesses</h3>
+            <ul>
+                <li>Runs from emotional expression</li>
+                <li>Stubborn and unemotional</li>
+                <li>Aloof and temperamental</li>
+                <li>Can be overly detached</li>
+            </ul>
+        `,
+        love: `
+            <h3>Love & Relationships</h3>
+            <p>Aquarius needs mental stimulation, friendship, and freedom above all else. They are loyal but require a partner who respects their independence and unique worldview.</p>
+            <p><strong>Best Matches:</strong> Gemini, Libra, Sagittarius</p>
+            <p><strong>Challenges:</strong> Can be emotionally detached and prioritize friends and causes over the relationship</p>
+            <p><strong>Love Style:</strong> Intellectual, friendly, and unconventional</p>
+        `,
+        career: `
+            <h3>Career & Money</h3>
+            <p>Thrive in innovative, forward-thinking fields and careers that allow them to help society or work with technology.</p>
+            <p><strong>Ideal Careers:</strong> Technology, science, activism, astronomy, social media</p>
+            <p><strong>Money Style:</strong> Spends on gadgets and experiences with friends, can be unpredictable with money</p>
+        `
+    }
+},
+'pisces': {
+    name: 'Pisces',
+    symbol: '♓',
+    dates: 'Feb 19 - Mar 20',
+    characteristics: {
+        personality: `
+            <h3>Core Personality</h3>
+            <p><strong>Element:</strong> Water</p>
+            <p><strong>Quality:</strong> Mutable</p>
+            <p><strong>Ruling Planet:</strong> Neptune (traditionally Jupiter)</p>
+            <p><strong>Symbol:</strong> The Fish</p>
+            <p>Pisces are compassionate, artistic, intuitive, and gentle. They are the dreamers and mystics of the zodiac, with a deep connection to the emotional and spiritual realms.</p>
+        `,
+        strengths: `
+            <h3>Strengths</h3>
+            <ul>
+                <li>Compassionate and artistic</li>
+                <li>Intuitive and gentle</li>
+                <li>Wise and musical</li>
+                <li>Selfless and empathetic</li>
+                <li>Dreamy and forgiving</li>
+            </ul>
+        `,
+        weaknesses: `
+            <h3>Weaknesses</h3>
+            <ul>
+                <li>Fearful and overly trusting</li>
+                <li>Sad and desires to escape reality</li>
+                <li>Can be a victim or martyr</li>
+                <li>Poor boundaries</li>
+            </ul>
+        `,
+        love: `
+            <h3>Love & Relationships</h3>
+            <p>Pisces are romantic, compassionate, and deeply empathetic partners. They seek a soul-level, spiritual connection and often merge completely with their loved one.</p>
+            <p><strong>Best Matches:</strong> Cancer, Scorpio, Capricorn</p>
+            <p><strong>Challenges:</strong> Can be overly idealistic and have poor boundaries in relationships</p>
+            <p><strong>Love Style:</strong> Romantic, compassionate, and soulful</p>
+        `,
+        career: `
+            <h3>Career & Money</h3>
+            <p>Excel in creative, healing, or spiritual professions. They thrive in environments that allow them to use their imagination and compassion.</p>
+            <p><strong>Ideal Careers:</strong> Arts, music, film, therapy, veterinary work, philanthropy</p>
+            <p><strong>Money Style:</strong> Can be dreamy with finances, generous to a fault, may need help with practical management</p>
+        `
+    }
+}
 };
 
 // Planets data
