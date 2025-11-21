@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Insight - Advanced Astrology Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="showSection('home')">
+                <i class="fas fa-star-and-crescent"></i>
+                Jirachi Star Guide
+            </div>
+            <ul class="nav-links">
+                <li><a class="active" onclick="showSection('home')">Home</a></li>
+                <li><a onclick="showSection('horoscope')">Horoscope</a></li>
+                <li><a onclick="showSection('birth-chart')">Birth Chart</a></li>
+                <li><a onclick="showSection('compatibility')">Compatibility</a></li>
+                <li><a onclick="showSection('numerology')">Numerology</a></li>
+                <li><a onclick="showSection('planets')">Planets & Houses</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <!-- <button class="menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button> -->
+                <button class="btn btn-primary">Login</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Home Section -->
+        <section id="home-section" class="content-section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Discover Your Cosmic Blueprint</h1>
+                    <p>Unlock the secrets of the universe with personalized astrological insights, numerology readings,
+                        and detailed birth chart analysis</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="showSection('birth-chart')">
+                            <i class="fas fa-chart-pie"></i> Get Birth Chart
+                        </button>
+                        <button class="btn btn-primary" onclick="showSection('numerology')">
+                            <i class="fas fa-calculator"></i> Numerology Report
+                        </button>
+                        <button class="btn btn-primary" onclick="showSection('compatibility')">
+                            <i class="fas fa-heart"></i> Compatibility Check
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <h2 class="section-title">Astrological Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card" onclick="showSection('birth-chart')">
+                        <div class="feature-icon">♈️</div>
+                        <h3>Birth Chart</h3>
+                        <p>Detailed planetary positions and aspects at your birth moment</p>
+                    </div>
+                    <div class="feature-card" onclick="showSection('horoscope')">
+                        <div class="feature-icon">💫</div>
+                        <h3>Daily Horoscope</h3>
+                        <p>Personalized daily predictions based on your zodiac sign</p>
+                    </div>
+                    <div class="feature-card" onclick="showSection('compatibility')">
+                        <div class="feature-icon">❤️</div>
+                        <h3>Compatibility</h3>
+                        <p>Check relationship compatibility with partners and friends</p>
+                    </div>
+                    <div class="feature-card" onclick="showSection('numerology')">
+                        <div class="feature-icon">🔢</div>
+                        <h3>Numerology</h3>
+                        <p>Life Path, Destiny, and Soul Urge numbers analysis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Update the Horoscope Section in your main HTML -->
+        <section id="horoscope-section" class="content-section">
+            <h2 class="section-title">Daily Horoscope</h2>
+            <div class="zodiac-grid" id="zodiac-grid">
+                <!-- Zodiac signs will be loaded dynamically -->
+            </div>
+
+            <div id="zodiac-details" class="zodiac-details-container" style="display: none;">
+                <h3 id="selected-zodiac-name"></h3>
+                <div class="zodiac-characteristics" id="zodiac-characteristics">
+                    <!-- Characteristics will be loaded dynamically when a zodiac sign is selected -->
+                </div>
+            </div>
+
+            <div id="horoscope-result" class="results"></div>
+        </section>
+
+        <!-- Birth Chart Section -->
+        <section id="birth-chart-section" class="content-section">
+            <h2 class="section-title">Birth Chart Calculator</h2>
+            <div class="calculator">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="birthDate">Birth Date</label>
+                    <input type="date" id="birthDate">
+                </div>
+                <div class="form-group">
+                    <label for="birthTime">Birth Time</label>
+                    <input type="time" id="birthTime">
+                </div>
+                <div class="form-group">
+                    <label for="birthPlace">Birth Place</label>
+                    <input type="text" id="birthPlace" placeholder="City, Country">
+                </div>
+                <button class="btn btn-primary" onclick="calculateBirthChart()">
+                    <i class="fas fa-calculator"></i> Calculate Birth Chart & Numerology
+                </button>
+            </div>
+            <div id="birthChartResults" class="results"></div>
+        </section>
+
+        <!-- Compatibility Section -->
+        <section id="compatibility-section" class="content-section">
+            <h2 class="section-title">Compatibility Check</h2>
+            <div class="calculator">
+                <div class="form-group">
+                    <label for="person1Sign">Your Zodiac Sign</label>
+                    <select id="person1Sign">
+                        <option value="">Select your sign</option>
+                        <option value="aries">Aries</option>
+                        <option value="taurus">Taurus</option>
+                        <option value="gemini">Gemini</option>
+                        <option value="cancer">Cancer</option>
+                        <option value="leo">Leo</option>
+                        <option value="virgo">Virgo</option>
+                        <option value="libra">Libra</option>
+                        <option value="scorpio">Scorpio</option>
+                        <option value="sagittarius">Sagittarius</option>
+                        <option value="capricorn">Capricorn</option>
+                        <option value="aquarius">Aquarius</option>
+                        <option value="pisces">Pisces</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="person2Sign">Partner's Zodiac Sign</label>
+                    <select id="person2Sign">
+                        <option value="">Select partner's sign</option>
+                        <option value="aries">Aries</option>
+                        <option value="taurus">Taurus</option>
+                        <option value="gemini">Gemini</option>
+                        <option value="cancer">Cancer</option>
+                        <option value="leo">Leo</option>
+                        <option value="virgo">Virgo</option>
+                        <option value="libra">Libra</option>
+                        <option value="scorpio">Scorpio</option>
+                        <option value="sagittarius">Sagittarius</option>
+                        <option value="capricorn">Capricorn</option>
+                        <option value="aquarius">Aquarius</option>
+                        <option value="pisces">Pisces</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="checkCompatibility()">
+                    <i class="fas fa-heart"></i> Check Compatibility
+                </button>
+            </div>
+            <div id="compatibilityResult" class="results"></div>
+        </section>
+
+        <!-- Numerology Section -->
+        <section id="numerology-section" class="content-section">
+            <h2 class="section-title">Numerology Guide</h2>
+
+            <div class="numerology-knowledge">
+                <div class="knowledge-card">
+                    <div class="number-badge">1</div>
+                    <h3>The Leader</h3>
+                    <p><strong>Characteristics:</strong> Independent, ambitious, determined, pioneering</p>
+                    <p><strong>Strengths:</strong> Leadership, creativity, originality, courage</p>
+                    <p><strong>Challenges:</strong> Impatience, arrogance, stubbornness</p>
+                    <p><strong>Life Purpose:</strong> To learn independence and develop leadership qualities</p>
+                </div>
+
+                <div class="knowledge-card">
+                    <div class="number-badge">2</div>
+                    <h3>The Diplomat</h3>
+                    <p><strong>Characteristics:</strong> Cooperative, intuitive, supportive, peaceful</p>
+                    <p><strong>Strengths:</strong> Diplomacy, empathy, teamwork, sensitivity</p>
+                    <p><strong>Challenges:</strong> Shyness, indecisiveness, over-sensitivity</p>
+                    <p><strong>Life Purpose:</strong> To bring harmony and balance to relationships</p>
+                </div>
+
+                <div class="knowledge-card">
+                    <div class="number-badge">3</div>
+                    <h3>The Communicator</h3>
+                    <p><strong>Characteristics:</strong> Creative, expressive, social, optimistic</p>
+                    <p><strong>Strengths:</strong> Communication, artistic talent, joy, inspiration</p>
+                    <p><strong>Challenges:</strong> Scattered energy, superficiality, gossip</p>
+                    <p><strong>Life Purpose:</strong> To inspire others through creative self-expression</p>
+                </div>
+
+                <div class="knowledge-card">
+                    <div class="number-badge">4</div>
+                    <h3>The Builder</h3>
+                    <p><strong>Characteristics:</strong> Practical, disciplined, reliable, hardworking</p>
+                    <p><strong>Strengths:</strong> Stability, organization, loyalty, patience</p>
+                    <p><strong>Challenges:</strong> Rigidity, stubbornness, resistance to change</p>
+                    <p><strong>Life Purpose:</strong> To build solid foundations and create stability</p>
+                </div>
+
+                <div class="knowledge-card">
+                    <div class="number-badge">5</div>
+                    <h3>The Freedom Lover</h3>
+                    <p><strong>Characteristics:</strong> Adventurous, versatile, progressive, curious</p>
+                    <p><strong>Strengths:</strong> Adaptability, freedom, travel, variety</p>
+                    <p><strong>Challenges:</strong> Restlessness, inconsistency, impulsiveness</p>
+                    <p><strong>Life Purpose:</strong> To experience freedom and embrace change</p>
+                </div>
+
+                <div class="knowledge-card">
+                    <div class="number-badge">6</div>
+                    <h3>The Nurturer</h3>
+                    <p><strong>Characteristics:</strong> Responsible, caring, protective, compassionate</p>
+                    <p><strong>Strengths:</strong> Nurturing, service, healing, domesticity</p>
+                    <p><strong>Challenges:</strong> Worry, interference, perfectionism</p>
+                    <p><strong>Life Purpose:</strong> To care for others and create harmony in family</p>
+                </div>
+            </div>
+
+            <div class="numerology-knowledge">
+                <div class="knowledge-card">
+                    <div class="number-badge">7</div>
+                    <h3>The Seeker</h3>
+                    <p><strong>Characteristics:</strong> Analytical, intuitive, spiritual, introspective</p>
+                    <p><strong>Strengths:</strong> Wisdom, spirituality, analysis, perfection</p>
+                    <p><strong>Challenges:</strong> Skepticism, isolation, pessimism</p>
+                    <p><strong>Life Purpose:</strong> To seek truth and develop spiritual awareness</p>
+                </div>
+
+                <div class="knowledge-card">
+                    <div class="number-badge">8</div>
+                    <h3>The Powerhouse</h3>
+                    <p><strong>Characteristics:</strong> Ambitious, authoritative, efficient, organized</p>
+                    <p><strong>Strengths:</strong> Business, authority, achievement, abundance</p>
+                    <p><strong>Challenges:</strong> Workaholism, materialism, control issues</p>
+                    <p><strong>Life Purpose:</strong> To achieve material success and personal power</p>
+                </div>
+
+                <div class="knowledge-card">
+                    <div class="number-badge">9</div>
+                    <h3>The Humanitarian</h3>
+                    <p><strong>Characteristics:</strong> Compassionate, artistic, wise, tolerant</p>
+                    <p><strong>Strengths:</strong> Humanitarianism, creativity, global awareness</p>
+                    <p><strong>Challenges:</strong> Emotionalism, detachment, self-sacrifice</p>
+                    <p><strong>Life Purpose:</strong> To serve humanity and spread compassion</p>
+                </div>
+
+                <div class="knowledge-card">
+                    <div class="number-badge">11</div>
+                    <h3>The Intuitive Illuminator</h3>
+                    <p><strong>Characteristics:</strong> Inspirational, intuitive, idealistic, visionary</p>
+                    <p><strong>Strengths:</strong> Inspiration, enlightenment, intuition, revelation</p>
+                    <p><strong>Challenges:</strong> Nervous energy, sensitivity, impracticality</p>
+                    <p><strong>Life Purpose:</strong> To inspire spiritual awakening in others</p>
+                </div>
+
+                <div class="knowledge-card">
+                    <div class="number-badge">22</div>
+                    <h3>The Master Builder</h3>
+                    <p><strong>Characteristics:</strong> Practical, visionary, powerful, idealistic</p>
+                    <p><strong>Strengths:</strong> Master planning, large-scale projects, practical dreams</p>
+                    <p><strong>Challenges:</strong> Overwhelm, confusion, pressure</p>
+                    <p><strong>Life Purpose:</strong> To turn dreams into reality on a large scale</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Planets & Houses Section -->
+        <!-- Update the Planets & Houses Section in your main HTML -->
+        <section id="planets-section" class="content-section">
+            <h2 class="section-title">Planets & Their Aspects in Houses</h2>
+
+            <div class="planets-grid" id="planets-grid">
+                <!-- Planets will be loaded dynamically -->
+            </div>
+
+            <div id="planet-details" class="planet-details-container" style="display: none;">
+                <h3 id="selected-planet-name"></h3>
+                <div class="houses-grid" id="houses-grid">
+                    <!-- Houses will be loaded dynamically when a planet is selected -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CosmicInsight</h3>
+                <p>Your gateway to cosmic wisdom and self-discovery through ancient astrological sciences.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a onclick="showSection('home')">Home</a></li>
+                    <li><a onclick="showSection('birth-chart')">Birth Chart</a></li>
+                    <li><a onclick="showSection('numerology')">Numerology</a></li>
+                    <li><a onclick="showSection('planets')">Planets & Houses</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div
+            style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p>&copy; 2024 CosmicInsight. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
