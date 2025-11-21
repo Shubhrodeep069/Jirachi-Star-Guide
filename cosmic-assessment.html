@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Personality Reading | Astrology Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #4A00E0;
+            --accent: #00BFFF;
+            --dark: #0F0B30;
+            --light: #F8F7FF;
+            --success: #00D4AA;
+            --warning: #FFAA00;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #1A103F 100%);
+            min-height: 100vh;
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+
+            100% {
+                background-position: 200px 0;
+            }
+        }
+
+        .astrologer-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(138, 43, 226, 0.8);
+            }
+
+            100% {
+                box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+            }
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeIn 2s ease;
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: slideUp 1s ease;
+        }
+
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .question-section {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .question-section.active {
+            display: block;
+        }
+
+        .question-number {
+            color: var(--accent);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .question-number i {
+            font-size: 1.2em;
+        }
+
+        .question-text {
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            color: #ffffff;
+            animation: fadeIn 1s ease;
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .option-card:hover::before {
+            left: 100%;
+        }
+
+        .option-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.2);
+        }
+
+        .option-card.selected {
+            background: rgba(138, 43, 226, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .option-icon {
+            font-size: 1.5em;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .option-text {
+            flex-grow: 1;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(138, 43, 226, 0.5);
+        }
+
+        .nav-button:active {
+            transform: translateY(-1px);
+        }
+
+        .nav-button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            opacity: 0.6;
+        }
+
+        .nav-button.next {
+            background: linear-gradient(135deg, var(--accent), #0066CC);
+        }
+
+        .results-section {
+            display: none;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .results-header {
+            margin-bottom: 30px;
+        }
+
+        .results-icon {
+            font-size: 5em;
+            margin: 20px 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .results-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .results-subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .personality-description {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+            line-height: 1.6;
+            border-left: 4px solid var(--primary);
+            animation: slideInRight 1s ease;
+        }
+
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .trait-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .trait-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .trait-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .trait-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .trait-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .trait-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
+        }
+
+        .trait-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .trait-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .trait-desc {
+            font-size: 0.9em;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .action-button {
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+        }
+
+        .restart-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+        }
+
+        .share-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(138, 43, 226, 0.5);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Floating animation for decorative elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translate(0, 0px);
+            }
+
+            50% {
+                transform: translate(0, -15px);
+            }
+
+            100% {
+                transform: translate(0, 0px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 30px 15px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .question-text {
+                font-size: 1.4em;
+            }
+
+            .quiz-container {
+                padding: 20px;
+            }
+
+            .traits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Back Button Styles */
+.back-button-container {
+    text-align: left;
+    margin-top: 20px;
+    animation: slideInLeft 0.8s ease;
+}
+
+.back-button {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(138, 43, 226, 0.3);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(138, 43, 226, 0.5);
+}
+
+.back-button:active {
+    transform: translateY(-1px);
+}
+
+/* Back Button Animation */
+@keyframes slideInLeft {
+    from { 
+        opacity: 0; 
+        transform: translateX(-30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- Animated Stars Background -->
+    <div class="stars" id="stars"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="back-button-container">
+                <button class="back-button" onclick="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Main
+                </button>
+            </div>
+            <div class="astrologer-avatar floating">
+                <i class="fas fa-crystal-ball"></i>
+            </div>
+            <h1>Cosmic Personality Reading</h1>
+            <p class="subtitle">Answer these celestial questions to reveal your true astrological essence and hidden
+                traits</p>
+            <!-- Back Button -->
+            
+        </div>
+
+        <div class="quiz-container">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span>Your Cosmic Journey</span>
+                    <span id="progressText">0% Complete</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+            </div>
+
+            <!-- Question 1 -->
+            <div class="question-section active" id="question1">
+                <div class="question-number">
+                    <i class="fas fa-question-circle"></i>
+                    Question 1 of 8
+                </div>
+                <h2 class="question-text">When faced with a major life decision, what is your immediate instinct?</h2>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(1, 1)">
+                        <div class="option-icon"><i class="fas fa-brain"></i></div>
+                        <div class="option-text">Analyze all possibilities logically and create detailed plans</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(1, 2)">
+                        <div class="option-icon"><i class="fas fa-feather-alt"></i></div>
+                        <div class="option-text">Follow your gut feeling and intuition immediately</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(1, 3)">
+                        <div class="option-icon"><i class="fas fa-users"></i></div>
+                        <div class="option-text">Seek advice from trusted friends and family first</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(1, 4)">
+                        <div class="option-icon"><i class="fas fa-hourglass-half"></i></div>
+                        <div class="option-text">Wait and see how the situation develops naturally</div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <div></div> <!-- Spacer -->
+                    <button class="nav-button next" onclick="nextQuestion()" id="nextBtn1" disabled>
+                        Next Question <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-section" id="question2">
+                <div class="question-number">
+                    <i class="fas fa-question-circle"></i>
+                    Question 2 of 8
+                </div>
+                <h2 class="question-text">Describe your ideal weekend - how do you recharge your energy?</h2>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(2, 1)">
+                        <div class="option-icon"><i class="fas fa-glass-cheers"></i></div>
+                        <div class="option-text">Social gatherings, parties, and meeting new people</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(2, 2)">
+                        <div class="option-icon"><i class="fas fa-book"></i></div>
+                        <div class="option-text">Quiet time alone with books, movies, or creative projects</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(2, 3)">
+                        <div class="option-icon"><i class="fas fa-hiking"></i></div>
+                        <div class="option-text">Outdoor adventures, sports, or physical activities</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(2, 4)">
+                        <div class="option-icon"><i class="fas fa-heart"></i></div>
+                        <div class="option-text">Deep conversations with close friends or partner</div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <button class="nav-button" onclick="prevQuestion()">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-button next" onclick="nextQuestion()" id="nextBtn2" disabled>
+                        Next Question <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-section" id="question3">
+                <div class="question-number">
+                    <i class="fas fa-question-circle"></i>
+                    Question 3 of 8
+                </div>
+                <h2 class="question-text">What kind of environment makes you feel most at peace?</h2>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(3, 1)">
+                        <div class="option-icon"><i class="fas fa-city"></i></div>
+                        <div class="option-text">A bustling city with constant movement and energy</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(3, 2)">
+                        <div class="option-icon"><i class="fas fa-mountain"></i></div>
+                        <div class="option-text">A serene natural setting like beach or mountains</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(3, 3)">
+                        <div class="option-icon"><i class="fas fa-home"></i></div>
+                        <div class="option-text">A cozy, beautifully decorated home space</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(3, 4)">
+                        <div class="option-icon"><i class="fas fa-university"></i></div>
+                        <div class="option-text">Anywhere with intellectual stimulation and learning</div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <button class="nav-button" onclick="prevQuestion()">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-button next" onclick="nextQuestion()" id="nextBtn3" disabled>
+                        Next Question <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-section" id="question4">
+                <div class="question-number">
+                    <i class="fas fa-question-circle"></i>
+                    Question 4 of 8
+                </div>
+                <h2 class="question-text">How do you handle conflict or disagreement?</h2>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(4, 1)">
+                        <div class="option-icon"><i class="fas fa-fist-raised"></i></div>
+                        <div class="option-text">Address it directly and assertively</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(4, 2)">
+                        <div class="option-icon"><i class="fas fa-dove"></i></div>
+                        <div class="option-text">Avoid confrontation and seek harmony</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(4, 3)">
+                        <div class="option-icon"><i class="fas fa-balance-scale"></i></div>
+                        <div class="option-text">Use logic and reasoning to persuade</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(4, 4)">
+                        <div class="option-icon"><i class="fas fa-user-secret"></i></div>
+                        <div class="option-text">Withdraw and process emotions privately first</div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <button class="nav-button" onclick="prevQuestion()">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-button next" onclick="nextQuestion()" id="nextBtn4" disabled>
+                        Next Question <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-section" id="question5">
+                <div class="question-number">
+                    <i class="fas fa-question-circle"></i>
+                    Question 5 of 8
+                </div>
+                <h2 class="question-text">What is your relationship with time and deadlines?</h2>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(5, 1)">
+                        <div class="option-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div class="option-text">Highly organized, always planning ahead</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(5, 2)">
+                        <div class="option-icon"><i class="fas fa-wind"></i></div>
+                        <div class="option-text">Go with the flow, deadlines are flexible</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(5, 3)">
+                        <div class="option-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="option-text">Work best under pressure and last-minute</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(5, 4)">
+                        <div class="option-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+                        <div class="option-text">Balance between structure and spontaneity</div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <button class="nav-button" onclick="prevQuestion()">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-button next" onclick="nextQuestion()" id="nextBtn5" disabled>
+                        Next Question <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-section" id="question6">
+                <div class="question-number">
+                    <i class="fas fa-question-circle"></i>
+                    Question 6 of 8
+                </div>
+                <h2 class="question-text">In relationships, what do you value most?</h2>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(6, 1)">
+                        <div class="option-icon"><i class="fas fa-comments"></i></div>
+                        <div class="option-text">Intellectual connection and stimulating conversations</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(6, 2)">
+                        <div class="option-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <div class="option-text">Emotional depth and unconditional support</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(6, 3)">
+                        <div class="option-icon"><i class="fas fa-map-marked-alt"></i></div>
+                        <div class="option-text">Adventure and shared experiences</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(6, 4)">
+                        <div class="option-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="option-text">Stability, loyalty, and reliability</div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <button class="nav-button" onclick="prevQuestion()">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-button next" onclick="nextQuestion()" id="nextBtn6" disabled>
+                        Next Question <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-section" id="question7">
+                <div class="question-number">
+                    <i class="fas fa-question-circle"></i>
+                    Question 7 of 8
+                </div>
+                <h2 class="question-text">When you dream at night, what themes often appear?</h2>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(7, 1)">
+                        <div class="option-icon"><i class="fas fa-feather"></i></div>
+                        <div class="option-text">Flying, exploring, and adventurous scenarios</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(7, 2)">
+                        <div class="option-icon"><i class="fas fa-puzzle-piece"></i></div>
+                        <div class="option-text">Problem-solving and complex puzzles</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(7, 3)">
+                        <div class="option-icon"><i class="fas fa-theater-masks"></i></div>
+                        <div class="option-text">Emotional encounters with people from your past</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(7, 4)">
+                        <div class="option-icon"><i class="fas fa-magic"></i></div>
+                        <div class="option-text">Vivid, symbolic imagery and mystical elements</div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <button class="nav-button" onclick="prevQuestion()">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-button next" onclick="nextQuestion()" id="nextBtn7" disabled>
+                        Next Question <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-section" id="question8">
+                <div class="question-number">
+                    <i class="fas fa-question-circle"></i>
+                    Question 8 of 8
+                </div>
+                <h2 class="question-text">What is your greatest strength in challenging times?</h2>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectOption(8, 1)">
+                        <div class="option-icon"><i class="fas fa-tools"></i></div>
+                        <div class="option-text">Practical problem-solving skills</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(8, 2)">
+                        <div class="option-icon"><i class="fas fa-hands-helping"></i></div>
+                        <div class="option-text">Empathy and understanding of others</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(8, 3)">
+                        <div class="option-icon"><i class="fas fa-dragon"></i></div>
+                        <div class="option-text">Courage and willingness to take risks</div>
+                    </div>
+                    <div class="option-card" onclick="selectOption(8, 4)">
+                        <div class="option-icon"><i class="fas fa-hourglass"></i></div>
+                        <div class="option-text">Patience and long-term perspective</div>
+                    </div>
+                </div>
+                <div class="navigation">
+                    <button class="nav-button" onclick="prevQuestion()">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="nav-button next" onclick="generateReading()" id="generateBtn" disabled>
+                        Get My Reading <i class="fas fa-crystal-ball"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection">
+                <div class="results-header">
+                    <div class="results-icon">
+                        <i class="fas fa-star-and-crescent"></i>
+                    </div>
+                    <h2 class="results-title">Your Cosmic Personality Profile</h2>
+                    <p class="results-subtitle">Based on the celestial alignment of your answers</p>
+                </div>
+
+                <div class="personality-description" id="personalityDescription">
+                    <!-- Generated content will appear here -->
+                </div>
+
+                <h3 style="margin: 30px 0 20px 0; color: #ffffff; font-size: 1.8em;">Your Celestial Traits</h3>
+                <div class="traits-grid" id="traitsGrid">
+                    <!-- Generated traits will appear here -->
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-button restart-button" onclick="restartQuiz()">
+                        <i class="fas fa-redo"></i> Take Reading Again
+                    </button>
+                    <button class="action-button share-button" onclick="shareResults()">
+                        <i class="fas fa-share-alt"></i> Share Results
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create animated stars background
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+
+                // Random properties for each star
+                const size = Math.random() * 3;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = 3 + Math.random() * 4;
+
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${posX}%`;
+                star.style.top = `${posY}%`;
+                star.style.animationDelay = `${delay}s`;
+                star.style.animationDuration = `${duration}s`;
+
+                starsContainer.appendChild(star);
+            }
+        }
+
+        let userAnswers = {};
+        let currentQuestion = 1;
+        const totalQuestions = 8;
+
+        function updateProgressBar() {
+            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `${Math.round(progress)}% Complete`;
+        }
+
+        function selectOption(questionNum, optionNum) {
+            // Remove selected class from all options in this question
+            const questionElement = document.getElementById(`question${questionNum}`);
+            const options = questionElement.querySelectorAll('.option-card');
+            options.forEach(option => option.classList.remove('selected'));
+
+            // Add selected class to clicked option
+            event.currentTarget.classList.add('selected');
+
+            // Store the answer
+            userAnswers[questionNum] = optionNum;
+
+            // Enable the next button
+            const nextButton = document.getElementById(`nextBtn${questionNum}`);
+            if (nextButton) nextButton.disabled = false;
+
+            if (questionNum === totalQuestions) {
+                document.getElementById('generateBtn').disabled = false;
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                document.getElementById(`question${currentQuestion}`).classList.remove('active');
+                currentQuestion++;
+                document.getElementById(`question${currentQuestion}`).classList.add('active');
+                updateProgressBar();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                document.getElementById(`question${currentQuestion}`).classList.remove('active');
+                currentQuestion--;
+                document.getElementById(`question${currentQuestion}`).classList.add('active');
+                updateProgressBar();
+            }
+        }
+
+        function generateReading() {
+            // Show loading state
+            document.getElementById('generateBtn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calculating...';
+
+            // Simulate processing time
+            setTimeout(() => {
+                // Hide questions and show results
+                document.getElementById(`question${currentQuestion}`).classList.remove('active');
+                document.getElementById('resultsSection').style.display = 'block';
+
+                // Generate personalized reading based on answers
+                generatePersonalityDescription();
+                generateTraits();
+
+                // Scroll to top of results
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 1500);
+        }
+
+        function generatePersonalityDescription() {
+            // Analyze answers to determine personality type
+            const logicalAnswers = [1, 3, 5].filter(q => userAnswers[q] === 1 || userAnswers[q] === 3).length;
+            const intuitiveAnswers = [1, 7, 8].filter(q => userAnswers[q] === 2 || userAnswers[q] === 4).length;
+            const socialAnswers = [2, 4, 6].filter(q => userAnswers[q] === 1 || userAnswers[q] === 4).length;
+            const adventurousAnswers = [2, 3, 7].filter(q => userAnswers[q] === 3 || userAnswers[q] === 1).length;
+
+            // Determine primary archetype
+            let primaryArchetype = "Balanced Soul";
+            let secondaryArchetype = "Intuitive Dreamer";
+
+            if (logicalAnswers >= 2) {
+                primaryArchetype = "Analytical Sage";
+                secondaryArchetype = "Strategic Thinker";
+            }
+
+            if (intuitiveAnswers >= 2) {
+                primaryArchetype = "Intuitive Mystic";
+                secondaryArchetype = "Empathic Visionary";
+            }
+
+            if (socialAnswers >= 2) {
+                primaryArchetype = "Social Connector";
+                secondaryArchetype = "Harmony Seeker";
+            }
+
+            if (adventurousAnswers >= 2) {
+                primaryArchetype = "Adventurous Explorer";
+                secondaryArchetype = "Bold Pioneer";
+            }
+
+            // Create personalized description
+            const description = `
+                <p>Greetings, seeker. The stars have spoken, and your celestial blueprint reveals you as a <strong>${primaryArchetype}</strong> with strong ${secondaryArchetype.toLowerCase()} influences.</p>
+                
+                <p>Your answers indicate a personality that ${getPersonalityTrait(
+                logicalAnswers, intuitiveAnswers, socialAnswers, adventurousAnswers
+            )}. In relationships, you ${getRelationshipStyle(userAnswers)} and in your career, you likely thrive when ${getCareerPreference(userAnswers)}.</p>
+                
+                <p>The planetary alignment suggests you possess a natural talent for ${getNaturalTalent(userAnswers)}, though you may sometimes struggle with ${getChallengeArea(userAnswers)}. Your life path is aligned with ${getLifePath(userAnswers)}, and the universe is guiding you toward experiences that will help you ${getGrowthArea(userAnswers)}.</p>
+                
+                <p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <em>Celestial Insight: ${getCelestialInsight(primaryArchetype)}</em>
+                </p>
+            `;
+
+            document.getElementById('personalityDescription').innerHTML = description;
+        }
+
+        // Helper functions for generating personalized content
+        function getPersonalityTrait(logical, intuitive, social, adventurous) {
+            if (logical >= 2 && adventurous >= 2) return "balances careful analysis with bold action";
+            if (intuitive >= 2 && social >= 2) return "connects deeply with others through empathy and understanding";
+            if (logical >= 2 && social >= 2) return "approaches relationships with both heart and mind";
+            if (adventurous >= 2 && intuitive >= 2) return "follows intuition toward new horizons and experiences";
+            return "finds harmony between different aspects of your being";
+        }
+
+        function getRelationshipStyle(answers) {
+            if (answers[6] === 1) return "values intellectual stimulation and deep conversations";
+            if (answers[6] === 2) return "seeks emotional depth and authentic connection";
+            if (answers[6] === 3) return "thrives on shared adventures and new experiences";
+            return "prizes stability, loyalty, and reliability above all";
+        }
+
+        function getCareerPreference(answers) {
+            if (answers[5] === 1) return "you can apply structured thinking and organization";
+            if (answers[5] === 2) return "you have flexibility and room for creative expression";
+            if (answers[5] === 3) return "facing challenges that require quick thinking and adaptation";
+            return "balancing independent work with collaborative projects";
+        }
+
+        function getNaturalTalent(answers) {
+            const talents = [
+                "understanding complex systems and patterns",
+                "sensing what others need without words",
+                "bringing people together and building community",
+                "seeing opportunities where others see obstacles",
+                "creating beauty and harmony in your environment"
+            ];
+            return talents[Math.floor(Math.random() * talents.length)];
+        }
+
+        function getChallengeArea(answers) {
+            const challenges = [
+                "balancing your need for independence with connection to others",
+                "trusting your intuition when logic seems more reliable",
+                "setting boundaries to protect your energy",
+                "allowing yourself to be vulnerable with those you trust",
+                "staying present instead of worrying about the future"
+            ];
+            return challenges[Math.floor(Math.random() * challenges.length)];
+        }
+
+        function getLifePath(answers) {
+            const paths = [
+                "helping others find their own inner wisdom",
+                "creating systems that make life easier for people",
+                "bringing beauty and inspiration to the world",
+                "building bridges between different communities",
+                "exploring uncharted territories both inner and outer"
+            ];
+            return paths[Math.floor(Math.random() * paths.length)];
+        }
+
+        function getGrowthArea(answers) {
+            const growthAreas = [
+                "develop greater self-trust and confidence in your decisions",
+                "learn to balance giving to others with nurturing yourself",
+                "discover new ways to express your unique creative voice",
+                "build deeper, more authentic connections with kindred spirits",
+                "cultivate resilience in the face of life's inevitable challenges"
+            ];
+            return growthAreas[Math.floor(Math.random() * growthAreas.length)];
+        }
+
+        function getCelestialInsight(archetype) {
+            const insights = {
+                "Analytical Sage": "Your mind is your greatest tool, but remember to occasionally listen to the whispers of your heart.",
+                "Intuitive Mystic": "The universe speaks through you - trust those subtle nudges and dreams.",
+                "Social Connector": "Your gift for bringing people together creates ripples of harmony throughout your community.",
+                "Adventurous Explorer": "Your courage to venture into the unknown inspires others to follow their own paths.",
+                "Balanced Soul": "In your equilibrium, you find the wisdom that others seek through extremes."
+            };
+
+            return insights[archetype] || "Your unique blend of qualities creates a celestial signature all your own.";
+        }
+
+        function generateTraits() {
+            const allTraits = [
+                { icon: '🧠', name: 'Analytical Mind', description: 'You process information deeply and systematically' },
+                { icon: '💫', name: 'Intuitive Wisdom', description: 'Strong connection to inner guidance and subtle energies' },
+                { icon: '🌟', name: 'Natural Charisma', description: 'You inspire and influence others with your presence' },
+                { icon: '🛡️', name: 'Resilient Spirit', description: 'Quick to recover and learn from life challenges' },
+                { icon: '🎨', name: 'Creative Vision', description: 'You see possibilities and beauty where others do not' },
+                { icon: '⚖️', name: 'Harmony Seeker', description: 'Naturally attuned to balance and fairness in all things' },
+                { icon: '🔍', name: 'Keen Observer', description: 'You notice details and patterns that others miss' },
+                { icon: '🌱', name: 'Growth-Oriented', description: 'Committed to personal evolution and self-improvement' },
+                { icon: '🤝', name: 'Empathic Connector', description: 'You naturally understand and relate to diverse perspectives' },
+                { icon: '⚡', name: 'Energetic Catalyst', description: 'You spark change and movement wherever you go' }
+            ];
+
+            // Select 4 random traits for variety
+            const selectedTraits = [...allTraits]
+                .sort(() => 0.5 - Math.random())
+                .slice(0, 4);
+
+            let traitsHTML = '';
+            selectedTraits.forEach(trait => {
+                traitsHTML += `
+                    <div class="trait-card">
+                        <div class="trait-icon">${trait.icon}</div>
+                        <div class="trait-name">${trait.name}</div>
+                        <div class="trait-desc">${trait.description}</div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('traitsGrid').innerHTML = traitsHTML;
+        }
+
+        function shareResults() {
+            // In a real application, this would integrate with social media APIs
+            alert('In a complete application, this would allow you to share your results on social media or with friends!');
+        }
+
+        function restartQuiz() {
+            userAnswers = {};
+            currentQuestion = 1;
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('question1').classList.add('active');
+            updateProgressBar();
+
+            // Reset all selected options
+            document.querySelectorAll('.option-card').forEach(option => {
+                option.classList.remove('selected');
+            });
+
+            // Reset all next buttons
+            for (let i = 1; i <= totalQuestions; i++) {
+                const btn = document.getElementById(`nextBtn${i}`);
+                if (btn) {
+                    btn.disabled = true;
+                    if (i === totalQuestions) {
+                        btn.innerHTML = 'Get My Reading <i class="fas fa-crystal-ball"></i>';
+                    } else {
+                        btn.innerHTML = 'Next Question <i class="fas fa-arrow-right"></i>';
+                    }
+                }
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function () {
+            createStars();
+            updateProgressBar();
+        });
+        // Back button functionality
+function goBack() {
+    window.location.href = 'index.html'; // Change this to your main page filename
+}
+    </script>
+</body>
+
+</html>
