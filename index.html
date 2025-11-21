@@ -29,9 +29,7 @@
                 <button class="theme-toggle" id="themeToggle">
                     <i class="fas fa-moon"></i>
                 </button>
-                <!-- <button class="menu-toggle" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars"></i>
-                </button> -->
+
                 <button class="btn btn-primary">Login</button>
             </div>
         </div>
@@ -82,6 +80,24 @@
                         <div class="feature-icon">🔢</div>
                         <h3>Numerology</h3>
                         <p>Life Path, Destiny, and Soul Urge numbers analysis</p>
+                    </div>
+
+                    <div class="feature-card" onclick="showSection('planets')">
+                        <div class="feature-icon">🔯</div>
+                        <h3>Planets & Houses</h3>
+                        <p>Explore planetary influences and their positions in astrological houses</p>
+                    </div>
+
+                    <div class="feature-card" onclick="window.location.href='cosmic-assessment.html'">
+                        <div class="feature-icon">✨</div>
+                        <h3>Astrological Personality Assessment</h3>
+                        <p>personality analysis</p>
+                    </div>
+
+                    <div class="feature-card" onclick="window.location.href='planet_guide.html'">
+                        <div class="feature-icon">🪐</div>
+                        <h3>all about planets</h3>
+                        <p>Personalized daily predictions based on your zodiac sign</p>
                     </div>
                 </div>
             </div>
@@ -324,6 +340,7 @@
                     <li><a onclick="showSection('birth-chart')">Birth Chart</a></li>
                     <li><a onclick="showSection('numerology')">Numerology</a></li>
                     <li><a onclick="showSection('planets')">Planets & Houses</a></li>
+
                 </ul>
             </div>
             <div class="footer-section">
