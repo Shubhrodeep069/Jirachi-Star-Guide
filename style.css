@@ -933,4 +933,193 @@ body.light-theme .zodiac-characteristic-card {
     margin-left: auto;
 }
 
+/* Support Modal Styles */
+.support-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+    margin: 2% auto;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px;
+    max-height: 85vh; /* Limit height */
+    position: relative;
+    animation: slideUp 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden; /* Important for scroll container */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Scrollable content area */
+#modal-body {
+    overflow-y: auto;
+    max-height: calc(85vh - 100px); /* Account for header and padding */
+    padding-right: 10px;
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for modal */
+#modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+#modal-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+#modal-body::-webkit-scrollbar-thumb {
+    background: #fdbb2d;
+    border-radius: 4px;
+}
+
+#modal-body::-webkit-scrollbar-thumb:hover {
+    background: #ffcc44;
+}
+
+.close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #fdbb2d;
+    transition: transform 0.3s ease;
+    z-index: 10; /* Ensure it stays above content */
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    transform: rotate(90deg);
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content h2 {
+    color: #fdbb2d;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+    padding: 1rem;
+    margin: -2rem -2rem 1.5rem -2rem;
+    z-index: 5;
+}
+
+.modal-content h3 {
+    color: #fdbb2d;
+    margin: 1.5rem 0 1rem 0;
+    font-size: 1.3rem;
+    border-bottom: 2px solid rgba(253, 187, 45, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.modal-content p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.modal-content li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    transition: background-color 0.3s ease;
+}
+
+.modal-content li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding-left: 10px;
+}
+
+.modal-content li:before {
+    content: "✦";
+    color: #fdbb2d;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.modal-content strong {
+    color: #fdbb2d;
+}
+
+.modal-content em {
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Footer Link Hover Effects */
+.footer-links a {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer-links a:hover {
+    color: #fdbb2d !important;
+    transform: translateX(5px);
+}
+
+.footer-links a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #fdbb2d;
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover:after {
+    width: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
