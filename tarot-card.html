@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 Mystical Tarot Card Reading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Crimson Text', 'Times New Roman', serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #f8f8ff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.3);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: headerGlow 8s infinite alternate;
+        }
+        
+        @keyframes headerGlow {
+            0% { box-shadow: 0 8px 32px rgba(138, 43, 226, 0.3); }
+            50% { box-shadow: 0 8px 32px rgba(75, 0, 130, 0.5); }
+            100% { box-shadow: 0 8px 32px rgba(148, 0, 211, 0.4); }
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8a2be2, #4b0082, #8a2be2);
+            animation: shimmer 3s infinite linear;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: 200px 0; }
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #e6e6fa;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+            letter-spacing: 2px;
+            animation: titlePulse 4s infinite ease-in-out;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(138, 43, 226, 0.5); }
+            50% { transform: scale(1.02); text-shadow: 0 0 20px rgba(138, 43, 226, 0.8); }
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: #b19cd9;
+            font-style: italic;
+            margin-bottom: 10px;
+            animation: fadeIn 2s ease;
+        }
+        
+        .description {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+            color: #d8bfd8;
+            animation: slideUp 1.5s ease;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease 0.5s both;
+        }
+        
+        .mode-btn {
+            padding: 14px 24px;
+            background: rgba(74, 0, 128, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mode-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .mode-btn:hover::before {
+            left: 100%;
+        }
+        
+        .mode-btn:hover {
+            background: rgba(106, 13, 173, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.4);
+        }
+        
+        .mode-btn.active {
+            background: rgba(148, 0, 211, 0.9);
+            box-shadow: 0 0 20px rgba(148, 0, 211, 0.6);
+            transform: translateY(-2px);
+            animation: buttonPulse 2s infinite;
+        }
+        
+        @keyframes buttonPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(148, 0, 211, 0.6); }
+            50% { box-shadow: 0 0 30px rgba(148, 0, 211, 0.9); }
+        }
+        
+        .reading-area {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1.5s ease 1s both;
+        }
+        
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 40px;
+            min-height: 350px;
+        }
+        
+        .card {
+            width: 180px;
+            height: 300px;
+            perspective: 1000px;
+            cursor: pointer;
+            animation: cardFloat 6s infinite ease-in-out;
+            animation-delay: calc(var(--delay) * 0.5s);
+        }
+        
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(1deg); }
+            75% { transform: translateY(5px) rotate(-1deg); }
+        }
+        
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+        
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .card.flipped {
+            animation: cardGlow 2s ease;
+            z-index: 10;
+        }
+        
+        @keyframes cardGlow {
+            0% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+            100% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5)); }
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+        
+        .card-front {
+            background: linear-gradient(45deg, #4b0082, #8a2be2);
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: frontShimmer 4s infinite linear;
+        }
+        
+        @keyframes frontShimmer {
+            0% { background: linear-gradient(45deg, #4b0082, #8a2be2); }
+            50% { background: linear-gradient(45deg, #5a1a9c, #9a4fe6); }
+            100% { background: linear-gradient(45deg, #4b0082, #8a2be2); }
+        }
+        
+        .card-front::before {
+            content: '🔮';
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.7;
+            animation: crystalSpin 10s infinite linear;
+        }
+        
+        @keyframes crystalSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        .card-back {
+            background: linear-gradient(135deg, #f5f5f5, #e6e6fa);
+            color: #333;
+            transform: rotateY(180deg);
+            padding: 20px;
+            text-align: center;
+            border: 2px solid rgba(75, 0, 130, 0.3);
+            animation: backReveal 0.5s ease;
+        }
+        
+        @keyframes backReveal {
+            0% { transform: rotateY(180deg) scale(0.8); opacity: 0; }
+            100% { transform: rotateY(180deg) scale(1); opacity: 1; }
+        }
+        
+        .card-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #4b0082;
+            border-bottom: 2px solid #4b0082;
+            padding-bottom: 5px;
+            width: 100%;
+            animation: textReveal 0.8s ease;
+        }
+        
+        @keyframes textReveal {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card-meaning {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            animation: textReveal 0.8s ease 0.2s both;
+        }
+        
+        .card-advice {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #6a0dad;
+            margin-top: auto;
+            padding: 10px;
+            background: rgba(106, 13, 173, 0.1);
+            border-radius: 8px;
+            width: 100%;
+            animation: textReveal 0.8s ease 0.4s both;
+        }
+        
+        .result {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+            animation: resultExpand 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @keyframes resultExpand {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .result::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: resultShine 3s infinite;
+        }
+        
+        @keyframes resultShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .result h3 {
+            margin-bottom: 20px;
+            color: #b19cd9;
+            font-size: 1.8rem;
+            text-shadow: 0 0 5px rgba(177, 156, 217, 0.5);
+            animation: titlePulse 3s infinite;
+        }
+        
+        .result-content {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .result-content p {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            animation: fadeInUp 0.8s ease both;
+            animation-delay: calc(var(--delay) * 0.2s);
+        }
+        
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .draw-btn {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: drawButtonPulse 3s infinite;
+        }
+        
+        @keyframes drawButtonPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(138, 43, 226, 0.8); }
+        }
+        
+        .draw-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .draw-btn:hover::before {
+            left: 100%;
+        }
+        
+        .draw-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.5);
+        }
+        
+        .draw-btn:active {
+            transform: translateY(2px) scale(1);
+        }
+        
+        .floating-crystals {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .crystal {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.1;
+            animation: floatCrystal 15s infinite linear;
+        }
+        
+        @keyframes floatCrystal {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #b19cd9;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            animation: fadeIn 2s ease 2s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                width: 140px;
+                height: 230px;
+            }
+            
+            .card-name {
+                font-size: 1.1rem;
+            }
+            
+            .card-meaning {
+                font-size: 0.85rem;
+            }
+            
+            .card-advice {
+                font-size: 0.8rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                width: 120px;
+                height: 200px;
+            }
+            
+            .card-name {
+                font-size: 1rem;
+            }
+            
+            .card-meaning, .card-advice {
+                font-size: 0.75rem;
+            }
+            
+            .mode-btn {
+                padding: 12px 16px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="floating-crystals" id="crystals-container"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Mystical Tarot Reading</h1>
+            <p class="subtitle">Unlock the secrets of your destiny</p>
+            <p class="description">Tap the cards to reveal their wisdom. Each card holds a unique message tailored to your current situation. Trust your intuition as you explore the mystical world of tarot.</p>
+        </header>
+        
+        <div class="modes">
+            <button class="mode-btn active" data-mode="one-card">1-Card Reading</button>
+            <button class="mode-btn" data-mode="three-card">3-Card Reading</button>
+            <button class="mode-btn" data-mode="love">Love Tarot</button>
+            <button class="mode-btn" data-mode="career">Career Tarot</button>
+        </div>
+        
+        <div class="reading-area">
+            <div class="cards-container" id="cards-container">
+                <!-- Cards will be generated here -->
+            </div>
+            
+            <div class="controls">
+                <button class="draw-btn" id="draw-btn">Draw New Cards</button>
+            </div>
+            
+            <div class="result" id="result">
+                <h3>Your Reading</h3>
+                <div class="result-content" id="result-content"></div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Tarot readings are for entertainment and self-reflection purposes only. Use your own judgment in making life decisions.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Expanded Tarot card database with 30 cards
+        const tarotCards = [
+            {
+                name: "The Fool",
+                meaning: "New beginnings, risk, adventure",
+                advice: "Trust the journey, don't overthink."
+            },
+            {
+                name: "The Magician",
+                meaning: "Manifestation, power, resourcefulness",
+                advice: "You have all the tools you need."
+            },
+            {
+                name: "The High Priestess",
+                meaning: "Intuition, mystery, subconscious",
+                advice: "Listen to your inner voice."
+            },
+            {
+                name: "The Empress",
+                meaning: "Femininity, abundance, nurturing",
+                advice: "Connect with nature and creativity."
+            },
+            {
+                name: "The Emperor",
+                meaning: "Authority, structure, control",
+                advice: "Establish order and take leadership."
+            },
+            {
+                name: "The Hierophant",
+                meaning: "Tradition, conformity, spirituality",
+                advice: "Seek guidance from established sources."
+            },
+            {
+                name: "The Lovers",
+                meaning: "Relationships, choices, alignment",
+                advice: "Choose what aligns with your heart."
+            },
+            {
+                name: "The Chariot",
+                meaning: "Willpower, determination, success",
+                advice: "Stay focused and overcome obstacles."
+            },
+            {
+                name: "Strength",
+                meaning: "Courage, compassion, inner strength",
+                advice: "Have faith in your abilities."
+            },
+            {
+                name: "The Hermit",
+                meaning: "Soul-searching, introspection, guidance",
+                advice: "Withdraw to find your inner light."
+            },
+            {
+                name: "Wheel of Fortune",
+                meaning: "Cycles, fate, turning point",
+                advice: "Embrace change and go with the flow."
+            },
+            {
+                name: "Justice",
+                meaning: "Fairness, truth, cause and effect",
+                advice: "Make decisions with integrity."
+            },
+            {
+                name: "The Hanged Man",
+                meaning: "Surrender, new perspective, pause",
+                advice: "Sometimes inaction is the best action."
+            },
+            {
+                name: "Death",
+                meaning: "Endings, transformation, transition",
+                advice: "Let go to make room for new beginnings."
+            },
+            {
+                name: "Temperance",
+                meaning: "Balance, moderation, patience",
+                advice: "Find the middle path in all things."
+            },
+            {
+                name: "The Devil",
+                meaning: "Bondage, materialism, ignorance",
+                advice: "Break free from self-imposed limitations."
+            },
+            {
+                name: "The Tower",
+                meaning: "Upheaval, sudden change, revelation",
+                advice: "Embrace necessary destruction for growth."
+            },
+            {
+                name: "The Star",
+                meaning: "Hope, inspiration, serenity",
+                advice: "Have faith in the universe's plan."
+            },
+            {
+                name: "The Moon",
+                meaning: "Fear, confusion, subconscious",
+                advice: "Be careful of assumptions and illusions."
+            },
+            {
+                name: "The Sun",
+                meaning: "Success, positivity, vitality",
+                advice: "Things will improve very soon."
+            },
+            {
+                name: "Judgement",
+                meaning: "Rebirth, inner calling, absolution",
+                advice: "Answer your life's calling without hesitation."
+            },
+            {
+                name: "The World",
+                meaning: "Completion, achievement, travel",
+                advice: "Celebrate your accomplishments and prepare for new cycles."
+            },
+            {
+                name: "Ace of Wands",
+                meaning: "Inspiration, new opportunities, growth",
+                advice: "Take that first step toward your passion."
+            },
+            {
+                name: "Three of Cups",
+                meaning: "Celebration, friendship, community",
+                advice: "Share your joy with others."
+            },
+            {
+                name: "Six of Pentacles",
+                meaning: "Generosity, charity, sharing wealth",
+                advice: "Practice giving and receiving graciously."
+            },
+            {
+                name: "Knight of Swords",
+                meaning: "Action, ambition, haste",
+                advice: "Pursue your goals but consider consequences."
+            },
+            {
+                name: "Queen of Cups",
+                meaning: "Compassion, emotional security, intuition",
+                advice: "Listen to your heart and trust your feelings."
+            },
+            {
+                name: "Ten of Pentacles",
+                meaning: "Wealth, family, legacy",
+                advice: "Build a foundation for future generations."
+            },
+            {
+                name: "Page of Wands",
+                meaning: "Exploration, excitement, free spirit",
+                advice: "Embrace new adventures with an open heart."
+            },
+            {
+                name: "Four of Swords",
+                meaning: "Rest, recuperation, contemplation",
+                advice: "Take time to recharge your mind and body."
+            }
+        ];
+
+        // DOM elements
+        const cardsContainer = document.getElementById('cards-container');
+        const drawBtn = document.getElementById('draw-btn');
+        const modeBtns = document.querySelectorAll('.mode-btn');
+        const result = document.getElementById('result');
+        const resultContent = document.getElementById('result-content');
+        const crystalsContainer = document.getElementById('crystals-container');
+
+        // Current reading mode
+        let currentMode = 'one-card';
+        
+        // Initialize the app
+        function init() {
+            createFloatingCrystals();
+            
+            // Set up event listeners for mode buttons
+            modeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    modeBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    // Update current mode
+                    currentMode = this.getAttribute('data-mode');
+                    // Reset and draw new cards
+                    resetReading();
+                    createCards();
+                });
+            });
+            
+            // Set up event listener for draw button
+            drawBtn.addEventListener('click', function() {
+                resetReading();
+                createCards();
+            });
+            
+            // Create initial cards
+            createCards();
+        }
+        
+        // Create floating crystals in background
+        function createFloatingCrystals() {
+            const crystalSymbols = ['🔮', '💎', '✨', '⭐', '🌟'];
+            for (let i = 0; i < 15; i++) {
+                const crystal = document.createElement('div');
+                crystal.className = 'crystal';
+                crystal.textContent = crystalSymbols[Math.floor(Math.random() * crystalSymbols.length)];
+                crystal.style.left = `${Math.random() * 100}%`;
+                crystal.style.animationDelay = `${Math.random() * 15}s`;
+                crystal.style.fontSize = `${Math.random() * 20 + 15}px`;
+                crystalsContainer.appendChild(crystal);
+            }
+        }
+        
+        // Create cards based on current mode
+        function createCards() {
+            cardsContainer.innerHTML = '';
+            result.style.display = 'none';
+            
+            let cardCount = 1;
+            if (currentMode === 'three-card') cardCount = 3;
+            
+            for (let i = 0; i < cardCount; i++) {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card';
+                cardElement.style.setProperty('--delay', i);
+                cardElement.innerHTML = `
+                    <div class="card-inner">
+                        <div class="card-front">
+                            Tap to Reveal
+                        </div>
+                        <div class="card-back">
+                            <div class="card-name">Card Name</div>
+                            <div class="card-meaning">Meaning</div>
+                            <div class="card-advice">Advice</div>
+                        </div>
+                    </div>
+                `;
+                
+                cardElement.addEventListener('click', function() {
+                    if (!this.classList.contains('flipped')) {
+                        flipCard(this);
+                    }
+                });
+                
+                cardsContainer.appendChild(cardElement);
+            }
+        }
+        
+        // Flip a card and assign a random tarot card
+        function flipCard(cardElement) {
+            const randomCard = tarotCards[Math.floor(Math.random() * tarotCards.length)];
+            
+            const cardBack = cardElement.querySelector('.card-back');
+            cardBack.querySelector('.card-name').textContent = randomCard.name;
+            cardBack.querySelector('.card-meaning').textContent = randomCard.meaning;
+            cardBack.querySelector('.card-advice').textContent = randomCard.advice;
+            
+            cardElement.classList.add('flipped');
+            
+            // Check if all cards are flipped to show reading
+            checkAllFlipped();
+        }
+        
+        // Check if all cards are flipped and show reading
+        function checkAllFlipped() {
+            const allCards = document.querySelectorAll('.card');
+            const flippedCards = document.querySelectorAll('.card.flipped');
+            
+            if (allCards.length === flippedCards.length) {
+                setTimeout(showReading, 800);
+            }
+        }
+        
+        // Show the reading interpretation
+        function showReading() {
+            result.style.display = 'block';
+            
+            let readingText = '';
+            const flippedCards = document.querySelectorAll('.card.flipped');
+            
+            if (currentMode === 'one-card') {
+                const cardName = flippedCards[0].querySelector('.card-name').textContent;
+                const cardMeaning = flippedCards[0].querySelector('.card-meaning').textContent;
+                const cardAdvice = flippedCards[0].querySelector('.card-advice').textContent;
+                
+                readingText = `
+                    <p style="--delay: 0"><strong>${cardName}</strong>: ${cardMeaning}</p>
+                    <p style="--delay: 1">Today's message: ${cardAdvice}</p>
+                    <p style="--delay: 2">This card reflects your current energy and offers guidance for the day ahead. Meditate on its meaning and see how it applies to your life.</p>
+                `;
+            } 
+            else if (currentMode === 'three-card') {
+                readingText = `
+                    <p style="--delay: 0"><strong>Past</strong>: ${flippedCards[0].querySelector('.card-name').textContent} - ${flippedCards[0].querySelector('.card-meaning').textContent}</p>
+                    <p style="--delay: 1"><strong>Present</strong>: ${flippedCards[1].querySelector('.card-name').textContent} - ${flippedCards[1].querySelector('.card-meaning').textContent}</p>
+                    <p style="--delay: 2"><strong>Future</strong>: ${flippedCards[2].querySelector('.card-name').textContent} - ${flippedCards[2].querySelector('.card-meaning').textContent}</p>
+                    <p style="--delay: 3">This spread shows how past influences have shaped your present circumstances and where your current path may lead. Consider how these energies interact in your life.</p>
+                `;
+            }
+            else if (currentMode === 'love') {
+                const cardName = flippedCards[0].querySelector('.card-name').textContent;
+                const cardMeaning = flippedCards[0].querySelector('.card-meaning').textContent;
+                const cardAdvice = flippedCards[0].querySelector('.card-advice').textContent;
+                
+                readingText = `
+                    <p style="--delay: 0"><strong>${cardName}</strong></p>
+                    <p style="--delay: 1">Relationship Insight: ${cardMeaning}</p>
+                    <p style="--delay: 2">Love Advice: ${cardAdvice}</p>
+                    <p style="--delay: 3">In matters of the heart, this card encourages you to reflect on your emotional needs and connections with others. Whether single or in a relationship, this guidance can help navigate your love life.</p>
+                `;
+            }
+            else if (currentMode === 'career') {
+                const cardName = flippedCards[0].querySelector('.card-name').textContent;
+                const cardMeaning = flippedCards[0].querySelector('.card-meaning').textContent;
+                const cardAdvice = flippedCards[0].querySelector('.card-advice').textContent;
+                
+                readingText = `
+                    <p style="--delay: 0"><strong>${cardName}</strong></p>
+                    <p style="--delay: 1">Career Insight: ${cardMeaning}</p>
+                    <p style="--delay: 2">Professional Advice: ${cardAdvice}</p>
+                    <p style="--delay: 3">This card speaks to your professional path, ambitions, and work relationships. Consider how its message applies to your career goals, workplace dynamics, or financial aspirations.</p>
+                `;
+            }
+            
+            resultContent.innerHTML = readingText;
+            
+            // Scroll to result
+            setTimeout(() => {
+                result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 500);
+        }
+        
+        // Reset the reading
+        function resetReading() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.classList.remove('flipped');
+            });
+            result.style.display = 'none';
+        }
+        
+        // Initialize the app when the page loads
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
