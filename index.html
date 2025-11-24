@@ -10,10 +10,11 @@
 </head>
 
 <body>
+    <!-- //////////////////////       chat bot celebi           ////////////////// -->
 
     <script src="https://cdn.botpress.cloud/webchat/v3.4/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/11/23/09/20251123091049-W1ATT6TI.js" defer></script>
-    
+
     <!-- Header -->
     <header>
         <div class="nav-container">
@@ -103,6 +104,11 @@
                         <h3>all about planets</h3>
                         <p>Personalized daily predictions based on your zodiac sign</p>
                     </div>
+                    <div class="feature-card" onclick="window.location.href='tarot-card.html'">
+    <div class="feature-icon">🔮</div>
+    <h3>Tarot Card Reading</h3>
+    <p>Unlock mystical insights and spiritual guidance through traditional tarot card readings</p>
+</div>
                 </div>
             </div>
         </section>
@@ -361,10 +367,19 @@
             style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
             <p>&copy; 2024 CosmicInsight. All rights reserved.</p>
         </div>
+        <!-- Support Modal - Add this right before closing </footer> tag -->
+        <div id="support-modal" class="support-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div id="modal-body">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="footer.js"></script>
 </body>
 
 </html>
-
