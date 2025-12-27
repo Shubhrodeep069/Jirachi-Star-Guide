@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Famous Astrologers & Astrology Resources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a2a, #1a1a3a, #2a2a4a);
+            color: #f0f0ff;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(25, 25, 112, 0.8), rgba(138, 43, 226, 0.8));
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '✨';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #d4d4ff;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+
+        /* Back to Home Button - Fixed Position */
+        .back-home {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
+            background: linear-gradient(45deg, #ff8e8e, #ffa8a8);
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            background: rgba(138, 43, 226, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .tab-btn:hover {
+            background: rgba(138, 43, 226, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Astrologers Grid */
+        .astrologers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .astrologer-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .astrologer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .astrologer-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #8a2be2;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+        }
+
+        .astrologer-name {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .astrologer-specialty {
+            color: #b19cd9;
+            font-style: italic;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .astrologer-bio {
+            color: #d4d4ff;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .astrologer-details {
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #b0b0ff;
+        }
+
+        .detail-icon {
+            margin-right: 10px;
+            color: #8a2be2;
+            font-size: 1.2rem;
+        }
+
+        .bio-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .bio-btn:hover {
+            background: linear-gradient(45deg, #9a4fe6, #5a1a9c);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        /* Books Grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .book-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-cover {
+            width: 120px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 0 auto 15px;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .book-title {
+            font-size: 1.4rem;
+            color: #ffd700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .book-author {
+            color: #b19cd9;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .book-description {
+            color: #d4d4ff;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(45deg, #FFA500, #FF8C00);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background: linear-gradient(45deg, #FFB733, #FF9F1A);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4);
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .resource-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .resource-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #8a2be2;
+        }
+
+        .resource-title {
+            font-size: 1.6rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .resource-description {
+            color: #d4d4ff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .resource-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(138, 43, 226, 0.3);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .resource-link:hover {
+            background: rgba(138, 43, 226, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin: 50px 0 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2));
+            border-radius: 15px;
+            border-left: 5px solid #ffd700;
+            border-right: 5px solid #ffd700;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .section-header p {
+            color: #d4d4ff;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: #b19cd9;
+            margin-bottom: 10px;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .astrologers-grid,
+            .books-grid,
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 10px;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .back-home {
+                top: 20px;
+                left: 20px;
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .astrologer-card,
+            .book-card,
+            .resource-card {
+                padding: 15px;
+            }
+            
+            .astrologer-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .back-home {
+                top: 15px;
+                left: 15px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Back to Home Button - Fixed at top left -->
+        <a href="javascript:void(0)" onclick="goToHomePage()" class="back-home">
+            <i class="fas fa-home"></i> Back to Home
+        </a>
+
+        <header>
+            <h1>🌟 Famous Astrologers & Astrology Resources</h1>
+            <p class="subtitle">Explore the lives and works of legendary astrologers who shaped the cosmic understanding of our world</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="astrologers">Famous Astrologers</button>
+            <button class="tab-btn" data-tab="books">Astrology Books</button>
+            <button class="tab-btn" data-tab="resources">Astrology Resources</button>
+            <button class="tab-btn" data-tab="schools">Astrology Schools</button>
+            <button class="tab-btn" data-tab="tools">Astrology Tools</button>
+        </div>
+
+        <!-- Famous Astrologers Section -->
+        <div id="astrologers" class="content-section active">
+            <div class="section-header">
+                <h2>Legendary Astrologers</h2>
+                <p>Meet the visionaries who brought celestial wisdom to humanity</p>
+            </div>
+
+            <div class="astrologers-grid">
+                <!-- Astrologer 1 -->
+                <div class="astrologer-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScImnDp2s0FFznBO8GeUBRkpUCPvDF7jRKSw&s" alt="Linda Goodman" class="astrologer-image">
+                    <h3 class="astrologer-name">Linda Goodman</h3>
+                    <p class="astrologer-specialty">⭐ Sun Sign Astrology Pioneer</p>
+                    <p class="astrologer-bio">American astrologer and poet, best known for her bestselling book "Linda Goodman's Sun Signs" which revolutionized popular astrology.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> April 9, 1925</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> American</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> Sun Signs, Love Signs</span>
+                        </div>
+                    </div>
+                    <a href="https://en.wikipedia.org/wiki/Linda_Goodman" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> View Biography
+                    </a>
+                </div>
+
+                <!-- Astrologer 2 -->
+                <div class="astrologer-card">
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/gettyimages-587490996.jpg?crop=1xw:1.0xh;center,top&resize=1200:*" alt="Nostradamus" class="astrologer-image">
+                    <h3 class="astrologer-name">Nostradamus</h3>
+                    <p class="astrologer-specialty">🔮 Prophetic Astrologer</p>
+                    <p class="astrologer-bio">French astrologer, physician and reputed seer, best known for his book "Les Prophéties" containing quatrains predicting future events.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> December 14, 1503</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> French</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> Les Prophéties</span>
+                        </div>
+                    </div>
+                    <a href="https://en.wikipedia.org/wiki/Nostradamus" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> View Biography
+                    </a>
+                </div>
+
+                <!-- Astrologer 3 -->
+                <div class="astrologer-card">
+                    <img src="https://www.hollywoodreporter.com/wp-content/uploads/2018/08/gettyimages-590199290-h_2018.jpg" alt="Susan Miller" class="astrologer-image">
+                    <h3 class="astrologer-name">Susan Miller</h3>
+                    <p class="astrologer-specialty">🌙 Modern Astrology Authority</p>
+                    <p class="astrologer-bio">American astrologer and author known for her website AstrologyZone.com, providing detailed monthly horoscopes to millions of readers worldwide.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> 1952</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> American</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> The Planet Series</span>
+                        </div>
+                    </div>
+                    <a href="https://en.wikipedia.org/wiki/Susan_Miller" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> View Biography
+                    </a>
+                </div>
+
+                <!-- Astrologer 4 -->
+                <div class="astrologer-card">
+                    <img src="https://www.arhatmedia.com/img/rob2.jpg" alt="Robert Hand" class="astrologer-image">
+                    <h3 class="astrologer-name">Robert Hand</h3>
+                    <p class="astrologer-specialty">♑ Traditional Astrology Scholar</p>
+                    <p class="astrologer-bio">American astrologer known for his work in reviving traditional Western astrology and his contributions to astrological software development.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> 1942</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> American</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> Planets in Transit</span>
+                        </div>
+                    </div>
+                    <a href="https://en.wikipedia.org/wiki/Robert_Hand" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> View Biography
+                    </a>
+                </div>
+
+                <!-- Astrologer 5 -->
+                <div class="astrologer-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwYVCS5KV1Rt6bcGqVm4EgkUGMBu4kdmEbFQ&s" alt="Bejan Daruwalla" class="astrologer-image">
+                    <h3 class="astrologer-name">Bejan Daruwalla</h3>
+                    <p class="astrologer-specialty">☀️ Indian Astrology Icon</p>
+                    <p class="astrologer-bio">Indian astrologer and palmist known for his newspaper columns and predictions about celebrities and political figures.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> July 11, 1931</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> Indian</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> Various newspaper columns</span>
+                        </div>
+                    </div>
+                    <a href="https://en.wikipedia.org/wiki/Bejan_Daruwalla" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> View Biography
+                    </a>
+                </div>
+
+                <!-- Astrologer 6 -->
+                <div class="astrologer-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy-RB3vUYTbPyQfFHBH4ZJHStrLW3CLAM6RvihItqS7w&s" alt="John Dee" class="astrologer-image">
+                    <h3 class="astrologer-name">John Dee</h3>
+                    <p class="astrologer-specialty">⚗️ Renaissance Astrologer & Alchemist</p>
+                    <p class="astrologer-bio">English mathematician, astronomer, astrologer, and advisor to Queen Elizabeth I. He devoted much of his life to the study of alchemy, divination, and Hermetic philosophy.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> July 13, 1527</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> English</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> Monas Hieroglyphica</span>
+                        </div>
+                    </div>
+                    <a href="https://en.wikipedia.org/wiki/John_Dee" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> View Biography
+                    </a>
+                </div>
+
+                <!-- NEW ASTROLOGER 7 -->
+                <div class="astrologer-card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Evangeline Adams" class="astrologer-image">
+                    <h3 class="astrologer-name">Evangeline Adams</h3>
+                    <p class="astrologer-specialty">⚖️ Legal Astrology Pioneer</p>
+                    <p class="astrologer-bio">American astrologer who successfully defended astrology in court in 1914. She was the first astrologer to have a radio show and wrote extensively about astrological principles.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> February 8, 1868</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> American</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> Astrology: Your Place Among the Stars</span>
+                        </div>
+                    </div>
+                    <a href="https://en.wikipedia.org/wiki/Evangeline_Adams" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> View Biography
+                    </a>
+                </div>
+
+                <!-- NEW ASTROLOGER 8 -->
+                <div class="astrologer-card">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Alan Leo" class="astrologer-image">
+                    <h3 class="astrologer-name">Alan Leo</h3>
+                    <p class="astrologer-specialty">🦁 Modern Astrology Founder</p>
+                    <p class="astrologer-bio">British astrologer, writer, and publisher, considered the father of modern astrology. He founded the Astrological Lodge of the Theosophical Society and popularized sun sign astrology.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> August 7, 1860</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> British</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> The Art of Synthesis, Astrology for All</span>
+                        </div>
+                    </div>
+                    <a href="https://en.wikipedia.org/wiki/Alan_Leo" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> View Biography
+                    </a>
+                </div>
+
+                <!-- NEW ASTROLOGER 9 -->
+                <div class="astrologer-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Steven Forrest" class="astrologer-image">
+                    <h3 class="astrologer-name">Steven Forrest</h3>
+                    <p class="astrologer-specialty">🌌 Evolutionary Astrology Founder</p>
+                    <p class="astrologer-bio">American astrologer known for developing Evolutionary Astrology, which focuses on the soul's growth through lifetimes. He has written extensively on spiritual dimensions of astrology.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> 1949</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> American</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> The Inner Sky, The Changing Sky</span>
+                        </div>
+                    </div>
+                    <a href="https://en.wikipedia.org/wiki/Steven_Forrest" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> View Biography
+                    </a>
+                </div>
+
+                <!-- NEW ASTROLOGER 10 -->
+                <div class="astrologer-card">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Chani Nicholas" class="astrologer-image">
+                    <h3 class="astrologer-name">Chani Nicholas</h3>
+                    <p class="astrologer-specialty">🌈 Social Justice Astrologer</p>
+                    <p class="astrologer-bio">Canadian astrologer known for integrating social justice principles with astrological practice. She focuses on using astrology as a tool for personal and collective liberation.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> 1978</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> Canadian</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> You Were Born for This</span>
+                        </div>
+                    </div>
+                    <a href="https://chaninicholas.com" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> Visit Website
+                    </a>
+                </div>
+
+                <!-- NEW ASTROLOGER 11 -->
+                <div class="astrologer-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Deborah Houlding" class="astrologer-image">
+                    <h3 class="astrologer-name">Deborah Houlding</h3>
+                    <p class="astrologer-specialty">🏰 Traditional Horary Expert</p>
+                    <p class="astrologer-bio">British astrologer specializing in traditional horary and electional astrology. She is the founder of the traditional astrology website Skyscript and has revived interest in classical techniques.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> 1962</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> British</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> The Houses: Temples of the Sky</span>
+                        </div>
+                    </div>
+                    <a href="https://www.skyscript.co.uk" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> Visit Website
+                    </a>
+                </div>
+
+                <!-- NEW ASTROLOGER 12 -->
+                <div class="astrologer-card">
+                    <img src="https://images.unsplash.com/photo-1556157382-2eda3e8a9944?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Demetra George" class="astrologer-image">
+                    <h3 class="astrologer-name">Demetra George</h3>
+                    <p class="astrologer-specialty">🌙 Goddess Astrology</p>
+                    <p class="astrologer-bio">American astrologer specializing in archetypal and goddess astrology. She is known for her work on the asteroids and their significance in the natal chart.</p>
+                    <div class="astrologer-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">📅</span>
+                            <span><strong>Born:</strong> 1946</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📍</span>
+                            <span><strong>Nationality:</strong> American</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">📚</span>
+                            <span><strong>Famous Work:</strong> Asteroid Goddesses, Mysteries of the Dark Moon</span>
+                        </div>
+                    </div>
+                    <a href="https://demetra-george.com" target="_blank" class="bio-btn">
+                        <i class="fas fa-external-link-alt"></i> Visit Website
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Books Section -->
+        <div id="books" class="content-section">
+            <div class="section-header">
+                <h2>Essential Astrology Books</h2>
+                <p>Must-read books for astrology enthusiasts and practitioners</p>
+            </div>
+
+            <div class="books-grid">
+                <!-- Book 1 -->
+                <div class="book-card">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Linda Goodman's Sun Signs" class="book-cover">
+                    <h3 class="book-title">Linda Goodman's Sun Signs</h3>
+                    <p class="book-author">Linda Goodman</p>
+                    <p class="book-description">The book that popularized sun sign astrology, providing detailed personality profiles for all twelve zodiac signs.</p>
+                    <a href="https://www.amazon.com/Linda-Goodmans-Sun-Signs-Goodman/dp/0553278364" target="_blank" class="buy-btn">
+                        <i class="fas fa-shopping-cart"></i> Buy on Amazon
+                    </a>
+                </div>
+
+                <!-- Book 2 -->
+                <div class="book-card">
+                    <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="The Only Astrology Book You'll Ever Need" class="book-cover">
+                    <h3 class="book-title">The Only Astrology Book You'll Ever Need</h3>
+                    <p class="book-author">Joanna Martine Woolfolk</p>
+                    <p class="book-description">Comprehensive guide covering all aspects of astrology from sun signs to chart interpretation.</p>
+                    <a href="https://www.amazon.com/Only-Astrology-Book-Youll-Ever/dp/1589796539" target="_blank" class="buy-btn">
+                        <i class="fas fa-shopping-cart"></i> Buy on Amazon
+                    </a>
+                </div>
+
+                <!-- Book 3 -->
+                <div class="book-card">
+                    <img src="https://images.unsplash.com/photo-1531346688376-ab6275c4725e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Planets in Transit" class="book-cover">
+                    <h3 class="book-title">Planets in Transit</h3>
+                    <p class="book-author">Robert Hand</p>
+                    <p class="book-description">Essential reference for understanding planetary transits and their effects on natal charts.</p>
+                    <a href="https://www.amazon.com/Planets-Transit-Life-Earth-Transits/dp/0895941512" target="_blank" class="buy-btn">
+                        <i class="fas fa-shopping-cart"></i> Buy on Amazon
+                    </a>
+                </div>
+
+                <!-- Book 4 -->
+                <div class="book-card">
+                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="The Inner Sky" class="book-cover">
+                    <h3 class="book-title">The Inner Sky</h3>
+                    <p class="book-author">Steven Forrest</p>
+                    <p class="book-description">Classic text on evolutionary astrology and soul-centered chart interpretation.</p>
+                    <a href="https://www.amazon.com/Inner-Sky-Dynamic-New-Astrology/dp/1578636421" target="_blank" class="buy-btn">
+                        <i class="fas fa-shopping-cart"></i> Buy on Amazon
+                    </a>
+                </div>
+
+                <!-- Book 5 -->
+                <div class="book-card">
+                    <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Astrology for the Soul" class="book-cover">
+                    <h3 class="book-title">Astrology for the Soul</h3>
+                    <p class="book-author">Jan Spiller</p>
+                    <p class="book-description">Groundbreaking work on the north node of the Moon and its significance in personal growth.</p>
+                    <a href="https://www.amazon.com/Astrology-Soul-Jan-Spiller/dp/0553378385" target="_blank" class="buy-btn">
+                        <i class="fas fa-shopping-cart"></i> Buy on Amazon
+                    </a>
+                </div>
+
+                <!-- Book 6 -->
+                <div class="book-card">
+                    <img src="https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="The Twelve Houses" class="book-cover">
+                    <h3 class="book-title">The Twelve Houses</h3>
+                    <p class="book-author">Howard Sasportas</p>
+                    <p class="book-description">In-depth exploration of the astrological houses and their psychological significance.</p>
+                    <a href="https://www.amazon.com/Twelve-Houses-Howard-Sasportas/dp/1902405320" target="_blank" class="buy-btn">
+                        <i class="fas fa-shopping-cart"></i> Buy on Amazon
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources Section -->
+        <div id="resources" class="content-section">
+            <div class="section-header">
+                <h2>Astrology Resources</h2>
+                <p>Tools, websites, and platforms for astrology learning and practice</p>
+            </div>
+
+            <div class="resources-grid">
+                <!-- Resource 1 -->
+                <div class="resource-card">
+                    <div class="resource-icon">🌐</div>
+                    <h3 class="resource-title">Astrodienst</h3>
+                    <p class="resource-description">Free natal charts, daily horoscopes, and comprehensive astrology articles. One of the oldest and most respected astrology websites.</p>
+                    <a href="https://www.astro.com" target="_blank" class="resource-link">
+                        <i class="fas fa-external-link-alt"></i> Visit Website
+                    </a>
+                </div>
+
+                <!-- Resource 2 -->
+                <div class="resource-card">
+                    <div class="resource-icon">📱</div>
+                    <h3 class="resource-title">Astrology Apps</h3>
+                    <p class="resource-description">Best mobile apps for astrology: TimePassages, Co-Star, The Pattern, and Sanctuary. Get daily insights on your phone.</p>
+                    <a href="https://apps.apple.com/us/app/co-star-personalized-astrology/id1254746554" target="_blank" class="resource-link">
+                        <i class="fas fa-mobile-alt"></i> Explore Apps
+                    </a>
+                </div>
+
+                <!-- Resource 3 -->
+                <div class="resource-card">
+                    <div class="resource-icon">🎓</div>
+                    <h3 class="resource-title">Astrology Courses</h3>
+                    <p class="resource-description">Online learning platforms: Kepler College, The Astrology School, and Astrology University offer certified courses.</p>
+                    <a href="https://kepler.edu" target="_blank" class="resource-link">
+                        <i class="fas fa-graduation-cap"></i> Learn Online
+                    </a>
+                </div>
+
+                <!-- Resource 4 -->
+                <div class="resource-card">
+                    <div class="resource-icon">📊</div>
+                    <h3 class="resource-title">Astrology Software</h3>
+                    <p class="resource-description">Professional tools: Solar Fire, Kepler, and Astro Gold for detailed chart calculations and interpretations.</p>
+                    <a href="https://alabe.com" target="_blank" class="resource-link">
+                        <i class="fas fa-laptop-code"></i> Get Software
+                    </a>
+                </div>
+
+                <!-- Resource 5 -->
+                <div class="resource-card">
+                    <div class="resource-icon">📰</div>
+                    <h3 class="resource-title">Astrology Journals</h3>
+                    <p class="resource-description">Leading publications: The Mountain Astrologer, Today's Astrologer, and ISAR Journal for serious practitioners.</p>
+                    <a href="https://www.mountainastrologer.com" target="_blank" class="resource-link">
+                        <i class="fas fa-newspaper"></i> Read Journals
+                    </a>
+                </div>
+
+                <!-- Resource 6 -->
+                <div class="resource-card">
+                    <div class="resource-icon">🤝</div>
+                    <h3 class="resource-title">Astrology Communities</h3>
+                    <p class="resource-description">Join professional organizations: ISAR, NCGR, and AFAN for networking, conferences, and certification.</p>
+                    <a href="https://isarastrology.org" target="_blank" class="resource-link">
+                        <i class="fas fa-users"></i> Join Community
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schools Section -->
+        <div id="schools" class="content-section">
+            <div class="section-header">
+                <h2>Astrology Schools & Institutions</h2>
+                <p>Leading educational institutions for formal astrology training</p>
+            </div>
+
+            <div class="resources-grid">
+                <!-- School 1 -->
+                <div class="resource-card">
+                    <div class="resource-icon">🏛️</div>
+                    <h3 class="resource-title">Kepler College</h3>
+                    <p class="resource-description">First accredited college in the U.S. to offer degrees in astrology. Offers BA and MA programs in astrological studies.</p>
+                    <a href="https://kepler.edu" target="_blank" class="resource-link">
+                        <i class="fas fa-university"></i> Visit College
+                    </a>
+                </div>
+
+                <!-- School 2 -->
+                <div class="resource-card">
+                    <div class="resource-icon">🎓</div>
+                    <h3 class="resource-title">The Faculty of Astrological Studies</h3>
+                    <p class="resource-description">UK-based international school offering distance learning courses and the prestigious Diploma in Astrology.</p>
+                    <a href="https://www.astrology.org.uk" target="_blank" class="resource-link">
+                        <i class="fas fa-graduation-cap"></i> Explore Courses
+                    </a>
+                </div>
+
+                <!-- School 3 -->
+                <div class="resource-card">
+                    <div class="resource-icon">🌙</div>
+                    <h3 class="resource-title">Astrology University</h3>
+                    <p class="resource-description">Online platform offering courses from world-renowned astrologers. Live webinars and self-paced learning options.</p>
+                    <a href="https://astrologyuniversity.com" target="_blank" class="resource-link">
+                        <i class="fas fa-globe"></i> View Programs
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tools Section -->
+        <div id="tools" class="content-section">
+            <div class="section-header">
+                <h2>Astrology Tools & Calculators</h2>
+                <p>Essential tools for calculating and interpreting astrological charts</p>
+            </div>
+
+            <div class="resources-grid">
+                <!-- Tool 1 -->
+                <div class="resource-card">
+                    <div class="resource-icon">🧮</div>
+                    <h3 class="resource-title">Ephemeris Calculators</h3>
+                    <p class="resource-description">Online ephemeris tools for calculating planetary positions, aspects, and transits for any date in history.</p>
+                    <a href="https://www.astro.com/swisseph/swepha_e.htm" target="_blank" class="resource-link">
+                        <i class="fas fa-calculator"></i> Calculate Ephemeris
+                    </a>
+                </div>
+
+                <!-- Tool 2 -->
+                <div class="resource-card">
+                    <div class="resource-icon">🗺️</div>
+                    <h3 class="resource-title">Chart Calculation Tools</h3>
+                    <p class="resource-description">Free online natal chart calculators with detailed interpretations and aspect analysis.</p>
+                    <a href="https://cafeastrology.com/free-natal-chart-report.html" target="_blank" class="resource-link">
+                        <i class="fas fa-chart-bar"></i> Create Charts
+                    </a>
+                </div>
+
+                <!-- Tool 3 -->
+                <div class="resource-card">
+                    <div class="resource-icon">⏳</div>
+                    <h3 class="resource-title">Transit Calculators</h3>
+                    <p class="resource-description">Tools to calculate current planetary transits and their effects on your natal chart.</p>
+                    <a href="https://www.astro-seek.com/transit-chart-calculator" target="_blank" class="resource-link">
+                        <i class="fas fa-clock"></i> Check Transits
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2024 Astrology Wisdom Archive | Explore the Stars, Discover Yourself</p>
+            <p>Disclaimer: This website is for educational and entertainment purposes only.</p>
+            <p>All images are for representation purposes only. Copyrights belong to their respective owners.</p>
+        </footer>
+
+        <a href="#" class="back-to-top">↑</a>
+    </div>
+
+    <script>
+        // Tab Switching Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons and sections
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    contentSections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Smooth scroll to top of section
+                    document.getElementById(tabId).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
+            
+            // Back to Top Button
+            const backToTopBtn = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.style.opacity = '1';
+                    backToTopBtn.style.visibility = 'visible';
+                } else {
+                    backToTopBtn.style.opacity = '0';
+                    backToTopBtn.style.visibility = 'hidden';
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Add hover effects to all cards
+            const cards = document.querySelectorAll('.astrologer-card, .book-card, .resource-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Initialize with random background stars animation
+            createStars();
+        });
+        
+        // Function to handle back to home button
+        function goToHomePage() {
+            // If you have an actual home page URL, replace the alert with:
+            window.location.href = "index.html";
+            
+            // For demo purposes, showing an alert and scrolling to top
+            // alert("Navigating to Home Page... In a real website, this would take you to the homepage.");
+            
+            // Scroll to top with smooth animation
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Reset to first tab (optional)
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+            
+            // Activate first tab
+            document.querySelector('.tab-btn').classList.add('active');
+            document.getElementById('astrologers').classList.add('active');
+        }
+        
+        function createStars() {
+            const container = document.querySelector('body');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'fixed';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.background = 'white';
+                star.style.borderRadius = '50%';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.opacity = Math.random() * 0.5 + 0.2;
+                star.style.zIndex = '-1';
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite alternate`;
+                container.appendChild(star);
+            }
+            
+            // Add twinkle animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes twinkle {
+                    0% { opacity: 0.2; }
+                    100% { opacity: 0.8; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planetary Stones: Gemstones for Each Planet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0e17;
+            color: #f0f0f0;
+            line-height: 1.6;
+            padding-bottom: 40px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Back Button Styling with Animation */
+        .back-button-fixed {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            animation: slideInLeft 0.8s ease-out 0.2s both;
+        }
+        
+        .back-button a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(145deg, #152642, #1e3a5f);
+            color: #f0f0f0;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #2a4a7a;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transform-origin: left center;
+        }
+        
+        .back-button a:hover {
+            background: linear-gradient(145deg, #1e3a5f, #152642);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(59, 130, 246, 0.5);
+            border-color: #3b82f6;
+            letter-spacing: 0.5px;
+        }
+        
+        .back-button a:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+        
+        .back-button i {
+            font-size: 1.1rem;
+            color: #6ee7b7;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-button a:hover i {
+            transform: translateX(-3px);
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0 30px;
+            background: linear-gradient(to right, #0c1b33, #1a3a5f);
+            border-bottom: 1px solid #2a4a7a;
+            margin-bottom: 30px;
+            position: relative;
+            animation: fadeInDown 1s ease-out;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(110, 231, 183, 0.08) 0%, transparent 50%);
+            animation: pulseGlow 8s ease-in-out infinite alternate;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #6ee7b7, #3b82f6, #8b5cf6);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: gradientShift 5s ease infinite, fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b0c4de;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        .intro-text {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 20px;
+            background-color: rgba(16, 30, 50, 0.7);
+            border-radius: 10px;
+            border-left: 4px solid #3b82f6;
+            animation: fadeIn 1.2s ease-out 0.7s both;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .intro-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        .planets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .planet-card {
+            background: linear-gradient(145deg, #152642, #1e3a5f);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #2a4a7a;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardEntrance 0.8s ease forwards;
+            position: relative;
+        }
+        
+        .planet-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6ee7b7, #3b82f6, #8b5cf6);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+        
+        .planet-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+        }
+        
+        .planet-card:hover .planet-image {
+            transform: scale(1.05);
+            filter: brightness(1.1) contrast(1.1);
+        }
+        
+        .planet-header {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid #2a4a7a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .planet-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        }
+        
+        .planet-name {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+        }
+        
+        .planet-icon {
+            font-size: 1.5rem;
+            transition: transform 0.5s ease;
+        }
+        
+        .planet-card:hover .planet-icon {
+            transform: rotate(360deg);
+        }
+        
+        .planet-type {
+            color: #8bb5ff;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .planet-content {
+            padding: 20px;
+        }
+        
+        .planet-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 2px solid #3b82f6;
+            transition: all 0.5s ease;
+            filter: brightness(0.9) contrast(1.1);
+        }
+        
+        .stones-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .stone {
+            background-color: rgba(30, 58, 95, 0.8);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #4a6fa5;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: stoneAppear 0.5s ease forwards;
+        }
+        
+        .stone:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: #ffd700;
+        }
+        
+        .stone-icon {
+            color: #ffd700;
+            transition: transform 0.3s ease;
+        }
+        
+        .stone:hover .stone-icon {
+            transform: rotate(15deg) scale(1.2);
+        }
+        
+        .properties {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #2a4a7a;
+        }
+        
+        .properties h4 {
+            color: #6ee7b7;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .properties-list {
+            list-style-type: none;
+        }
+        
+        .properties-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            opacity: 0;
+            transform: translateX(-10px);
+            animation: listItemEntrance 0.5s ease forwards;
+        }
+        
+        .properties-list li:before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .properties-list li:hover:before {
+            transform: scale(1.5) rotate(15deg);
+        }
+        
+        .legend {
+            background-color: rgba(16, 30, 50, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 1px solid #2a4a7a;
+            animation: fadeInUp 1s ease-out 1.2s both;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .legend::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+            animation: rotateSlow 20s linear infinite;
+        }
+        
+        .legend h3 {
+            color: #6ee7b7;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(30, 58, 95, 0.5);
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .legend-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #2a4a7a;
+            color: #8bb5ff;
+            font-size: 0.9rem;
+            animation: fadeIn 1s ease-out 1.5s both;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0; 
+                transform: translateY(-20px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from { 
+                opacity: 0; 
+                transform: translateX(-30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes cardEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes stoneAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes listItemEntrance {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes pulseGlow {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Stagger animations for planet cards */
+        .planet-card:nth-child(1) { animation-delay: 0.8s; }
+        .planet-card:nth-child(2) { animation-delay: 0.9s; }
+        .planet-card:nth-child(3) { animation-delay: 1.0s; }
+        .planet-card:nth-child(4) { animation-delay: 1.1s; }
+        .planet-card:nth-child(5) { animation-delay: 1.2s; }
+        .planet-card:nth-child(6) { animation-delay: 1.3s; }
+        .planet-card:nth-child(7) { animation-delay: 1.4s; }
+        .planet-card:nth-child(8) { animation-delay: 1.5s; }
+        .planet-card:nth-child(9) { animation-delay: 1.6s; }
+        .planet-card:nth-child(10) { animation-delay: 1.7s; }
+        
+        /* Stagger animations for list items */
+        .properties-list li:nth-child(1) { animation-delay: 0.1s; }
+        .properties-list li:nth-child(2) { animation-delay: 0.2s; }
+        .properties-list li:nth-child(3) { animation-delay: 0.3s; }
+        .properties-list li:nth-child(4) { animation-delay: 0.4s; }
+        
+        /* Stagger animations for stones */
+        .stone:nth-child(1) { animation-delay: 0.2s; }
+        .stone:nth-child(2) { animation-delay: 0.3s; }
+        .stone:nth-child(3) { animation-delay: 0.4s; }
+        .stone:nth-child(4) { animation-delay: 0.5s; }
+        
+        @media (max-width: 768px) {
+            .planets-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .planet-card {
+                max-width: 100%;
+            }
+            
+            .back-button-fixed {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 15px;
+                text-align: center;
+                animation: none;
+            }
+            
+            .back-button a {
+                display: inline-flex;
+            }
+            
+            header {
+                padding-top: 20px;
+            }
+            
+            /* Adjust animation delays for mobile */
+            .planet-card {
+                animation-delay: 0.5s !important;
+            }
+        }
+        
+        /* Scroll animation trigger */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button - Change href to your main page filename -->
+    <div class="back-button-fixed">
+        <div class="back-button">
+            <a href="index.html">
+                <i class="fas fa-arrow-left"></i>
+                Back to Main Page
+            </a>
+        </div>
+    </div>
+    
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-gem"></i> Planetary Stones</h1>
+            <p class="subtitle">Discover the gemstones associated with each planet in our solar system and their metaphysical properties</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="intro-text">
+            <p>Throughout history, cultures around the world have associated specific gemstones with celestial bodies. These planetary stones are believed to carry the energy and influence of their corresponding planets. Explore the gemstones for each planet below.</p>
+        </div>
+        
+        <div class="planets-grid" id="planets-container">
+            <!-- Planet cards will be generated by JavaScript -->
+        </div>
+        
+        <div class="legend">
+            <h3><i class="fas fa-info-circle"></i> Understanding Planetary Stones</h3>
+            <p>Planetary stones are gemstones that are traditionally associated with the planets of our solar system. These associations come from ancient astrological and metaphysical traditions. Each stone is believed to resonate with the energy of its corresponding planet and can be used in meditation, healing practices, or as personal talismans.</p>
+            <div class="legend-items" style="margin-top: 15px;">
+                <div class="legend-item"><i class="fas fa-circle" style="color: #3b82f6;"></i> Traditional Association</div>
+                <div class="legend-item"><i class="fas fa-circle" style="color: #6ee7b7;"></i> Modern Association</div>
+                <div class="legend-item"><i class="fas fa-circle" style="color: #f59e0b;"></i> Ancient Association</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Planetary Stones Guide • Created for educational and metaphysical exploration</p>
+            <p>Note: These associations are based on historical, cultural, and metaphysical traditions, not scientific astronomy.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Planetary data with stones and properties
+        const planetsData = [
+            {
+                name: "Sun",
+                icon: "fas fa-sun",
+                type: "Luminary",
+                image: "https://images.unsplash.com/photo-1614642264762-d0a3b8bf3700?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                stones: [
+                    { name: "Sunstone", type: "traditional" },
+                    { name: "Amber", type: "traditional" },
+                    { name: "Citrine", type: "modern" },
+                    { name: "Gold", type: "ancient" }
+                ],
+                properties: [
+                    "Enhances vitality and personal power",
+                    "Promotes confidence and leadership",
+                    "Stimulates creativity and self-expression",
+                    "Brings success and recognition"
+                ]
+            },
+            {
+                name: "Moon",
+                icon: "fas fa-moon",
+                type: "Luminary",
+                image: "https://images.unsplash.com/photo-1490814525860-594e82bfd34a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bW9vbnxlbnwwfHwwfHx8MA%3D%3D",
+                stones: [
+                    { name: "Moonstone", type: "traditional" },
+                    { name: "Pearl", type: "traditional" },
+                    { name: "Selenite", type: "modern" },
+                    { name: "Silver", type: "ancient" }
+                ],
+                properties: [
+                    "Enhances intuition and psychic abilities",
+                    "Promotes emotional balance and nurturing",
+                    "Connects to the subconscious and dreams",
+                    "Supports feminine energy and cycles"
+                ]
+            },
+            {
+                name: "Mercury",
+                icon: "fas fa-comments",
+                type: "Planet",
+                image: "https://media.istockphoto.com/id/691444480/photo/solar-sysytem-planet-mercury.jpg?s=612x612&w=0&k=20&c=KQJiusUL9QwN5aggTyAyYmVf31_CnQX4FACx2uH5pHY=",
+                stones: [
+                    { name: "Emerald", type: "traditional" },
+                    { name: "Agate", type: "traditional" },
+                    { name: "Aquamarine", type: "modern" }
+                ],
+                properties: [
+                    "Enhances communication and expression",
+                    "Improves mental clarity and learning",
+                    "Facilitates adaptability and quick thinking",
+                    "Supports business and commerce"
+                ]
+            },
+            {
+                name: "Venus",
+                icon: "fas fa-heart",
+                type: "Planet",
+                image: "https://media.istockphoto.com/id/1199281415/photo/planet-venus.jpg?s=612x612&w=0&k=20&c=A5IRCklr1Qpsu0XA6AbLi0HzM-AI9WvWojbLaoEcCA8=",
+                stones: [
+                    { name: "Rose Quartz", type: "traditional" },
+                    { name: "Copper", type: "traditional" },
+                    { name: "Jade", type: "modern" },
+                    { name: "Lapis Lazuli", type: "ancient" }
+                ],
+                properties: [
+                    "Attracts love and harmonious relationships",
+                    "Enhances beauty and artistic expression",
+                    "Promotes self-love and compassion",
+                    "Brings pleasure and sensuality"
+                ]
+            },
+            {
+                name: "Mars",
+                icon: "fas fa-fire",
+                type: "Planet",
+                image: "https://media.istockphoto.com/id/1313807581/photo/mars-planet-3d-render-illustration-high-detailed-surface-features.jpg?s=612x612&w=0&k=20&c=3C4ZWsb_sYvFfTtawjLF32WxN6a64K7E1HE-Ya6CzNc=",
+                stones: [
+                    { name: "Red Jasper", type: "traditional" },
+                    { name: "Bloodstone", type: "traditional" },
+                    { name: "Garnet", type: "modern" },
+                    { name: "Iron", type: "ancient" }
+                ],
+                properties: [
+                    "Boosts courage and physical energy",
+                    "Enhances motivation and determination",
+                    "Provides protection and defensive energy",
+                    "Stimulates passion and sexuality"
+                ]
+            },
+            {
+                name: "Jupiter",
+                icon: "fas fa-expand-arrows-alt",
+                type: "Gas Giant",
+                image: "https://media.istockphoto.com/id/1409917723/photo/abstract-planet-and-space-background.jpg?s=612x612&w=0&k=20&c=qJXdVchZotVl2ak_VxO2XQLyFUgLpQe73l1dBYPRXvQ=",
+                stones: [
+                    { name: "Amethyst", type: "traditional" },
+                    { name: "Turquoise", type: "traditional" },
+                    { name: "Sapphire", type: "modern" },
+                    { name: "Tin", type: "ancient" }
+                ],
+                properties: [
+                    "Attracts abundance and prosperity",
+                    "Expands opportunities and growth",
+                    "Enhances wisdom and philosophical thinking",
+                    "Brings good luck and optimism"
+                ]
+            },
+            {
+                name: "Saturn",
+                icon: "fas fa-ring",
+                type: "Gas Giant",
+                image: "https://media.istockphoto.com/id/606191046/photo/planet-saturn-with-major-moons.jpg?s=612x612&w=0&k=20&c=6cCk7S5mAB8VFZmSHIkf0MCYiAEHbSn5LDkU3ZVjCj4=",
+                stones: [
+                    { name: "Onyx", type: "traditional" },
+                    { name: "Obsidian", type: "traditional" },
+                    { name: "Jet", type: "modern" },
+                    { name: "Lead", type: "ancient" }
+                ],
+                properties: [
+                    "Provides structure and discipline",
+                    "Enhances responsibility and patience",
+                    "Offers protection and removes obstacles",
+                    "Facilitates karmic lessons and maturity"
+                ]
+            },
+            {
+                name: "Uranus",
+                icon: "fas fa-bolt",
+                type: "Ice Giant",
+                image: "https://media.istockphoto.com/id/1199283544/photo/planet-uranus.jpg?s=612x612&w=0&k=20&c=JC-gyLmScGmj4gKBOAkvlWb5dDQ_rIxhI98JOd8J50o=",
+                stones: [
+                    { name: "Labradorite", type: "modern" },
+                    { name: "Amazonite", type: "modern" },
+                    { name: "Electric Blue Calcite", type: "modern" }
+                ],
+                properties: [
+                    "Stimulates innovation and originality",
+                    "Enhances intuition and sudden insights",
+                    "Promotes rebellion against limitations",
+                    "Connects to futuristic thinking and technology"
+                ]
+            },
+            {
+                name: "Neptune",
+                icon: "fas fa-water",
+                type: "Ice Giant",
+                image: "https://images.unsplash.com/photo-1614313913007-2b4ae8ce32d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=50",
+                stones: [
+                    { name: "Aquamarine", type: "modern" },
+                    { name: "Amethyst", type: "modern" },
+                    { name: "Larimar", type: "modern" }
+                ],
+                properties: [
+                    "Enhances spiritual connection and mysticism",
+                    "Stimulates imagination and creativity",
+                    "Facilitates dreamwork and psychic visions",
+                    "Promotes compassion and transcendence"
+                ]
+            },
+            {
+                name: "Pluto",
+                icon: "fas fa-skull-crossbones",
+                type: "Dwarf Planet",
+                image: "https://media.istockphoto.com/id/1398609569/photo/pluto-planet-sphere-exploration-and-expedition-on-far-planet-pluto-planet-in-space-solar.jpg?s=612x612&w=0&k=20&c=Ea9DNeh12WGxqIG_xQMKt-O9sGPcCzXkbBAVPin9YoY=",
+                stones: [
+                    { name: "Black Tourmaline", type: "modern" },
+                    { name: "Smoky Quartz", type: "modern" },
+                    { name: "Moldavite", type: "modern" }
+                ],
+                properties: [
+                    "Facilitates transformation and rebirth",
+                    "Uncovers hidden truths and subconscious patterns",
+                    "Provides powerful protection during change",
+                    "Connects to primal energy and regeneration"
+                ]
+            }
+        ];
+
+        // Function to render planet cards
+        function renderPlanets() {
+            const container = document.getElementById('planets-container');
+            
+            planetsData.forEach((planet, index) => {
+                // Determine stone color based on type
+                const getStoneColor = (type) => {
+                    switch(type) {
+                        case 'traditional': return '#3b82f6';
+                        case 'modern': return '#6ee7b7';
+                        case 'ancient': return '#f59e0b';
+                        default: return '#8bb5ff';
+                    }
+                };
+                
+                // Create stone elements
+                const stoneElements = planet.stones.map((stone, stoneIndex) => 
+                    `<div class="stone" style="border-color: ${getStoneColor(stone.type)}; animation-delay: ${0.2 + (stoneIndex * 0.1)}s;">
+                        <i class="fas fa-gem stone-icon"></i>
+                        <span>${stone.name}</span>
+                    </div>`
+                ).join('');
+                
+                // Create properties list
+                const propertyElements = planet.properties.map((prop, propIndex) => 
+                    `<li style="animation-delay: ${0.1 + (propIndex * 0.1)}s;">${prop}</li>`
+                ).join('');
+                
+                // Create planet card with staggered animation delay
+                const animationDelay = 0.8 + (index * 0.1);
+                const planetCard = `
+                    <div class="planet-card" style="animation-delay: ${animationDelay}s;">
+                        <div class="planet-header">
+                            <h3 class="planet-name">
+                                <i class="${planet.icon} planet-icon"></i>
+                                ${planet.name}
+                            </h3>
+                            <p class="planet-type">${planet.type}</p>
+                        </div>
+                        <div class="planet-content">
+                            <img src="${planet.image}" alt="${planet.name}" class="planet-image">
+                            <h4>Associated Stones:</h4>
+                            <div class="stones-container">
+                                ${stoneElements}
+                            </div>
+                            <div class="properties">
+                                <h4><i class="fas fa-star"></i> Metaphysical Properties:</h4>
+                                <ul class="properties-list">
+                                    ${propertyElements}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.innerHTML += planetCard;
+            });
+        }
+
+        // Add scroll animation for elements
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            // Observe elements that should animate on scroll
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize the page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPlanets();
+            initScrollAnimations();
+            
+            // Add a subtle animation to the back button on page load
+            const backButton = document.querySelector('.back-button a');
+            setTimeout(() => {
+                backButton.style.transform = 'translateY(0)';
+            }, 800);
+            
+            // Add a fun hover effect to the title gem icon
+            const titleIcon = document.querySelector('h1 .fa-gem');
+            titleIcon.addEventListener('mouseover', function() {
+                this.style.transform = 'rotate(20deg) scale(1.2)';
+            });
+            titleIcon.addEventListener('mouseout', function() {
+                this.style.transform = 'rotate(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
