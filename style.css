@@ -127,7 +127,7 @@ body.light-theme .nav-links a:hover {
     background: none;
     border: none;
     color: var(--text);
-    font-size: 1.2rem;
+    font-size: 1.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -933,6 +933,8 @@ body.light-theme .zodiac-characteristic-card {
     margin-left: auto;
 }
 
+
+
 /* Support Modal Styles */
 .support-modal {
     display: none;
@@ -1122,4 +1124,3 @@ html {
         transform: translateY(0);
     }
 }
-
